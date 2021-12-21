@@ -113,6 +113,7 @@ namespace Scene
 
 			//常駐。
 			Game.OnMemory.CreateSingleton();
+			Game.OnMemory t_onmemory = Game.OnMemory.GetSingleton();
 
 			//ＧＬ。
 			t_monobehaviour.StartCoroutine(new Execute.GlExecute().Boot());
@@ -124,6 +125,9 @@ namespace Scene
 			t_engine.scene_list = new BlueBack.Scene.Scene_Base[(int)UnitySetting.SceneIndex.Max];
 			t_engine.scene_list[(int)UnitySetting.SceneIndex.Title] = new Scene.Title();
 			t_engine.scene_list[(int)UnitySetting.SceneIndex.InGame] = new Scene.InGame();
+
+			//プレイヤー。
+			t_onmemory.player = new Game.Player.Player();
 
 			//タイトルへ。
 			t_engine.scene.SetNextScene(t_engine.scene_list[(int)UnitySetting.SceneIndex.Title]);

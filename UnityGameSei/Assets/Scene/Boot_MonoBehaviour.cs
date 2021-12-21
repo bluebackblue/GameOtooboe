@@ -30,20 +30,22 @@ namespace Scene
 
 			//エンジン関連。
 			Execute.Engine.CreateSingleton();
+			Execute.Engine.GetSingleton().append_list = new System.Collections.Generic.List<Execute.AppEnd_Bases>();
 
 			//シーン管理初期化。ブートシーン開始。
 			s_monobehaviour.StartCoroutine(new Execute.SceneExecute().Boot(new Scene.Boot()));
 		}
 
-		/** OnDestroy
+		/** OnDisable
 		*/
-		private void OnDestroy()
+		private void OnDisable()
 		{
-			//TODO:シャットダウンコールバック。
-			//Execute.Shutdown.Call();
-
 			//エンジン関連。
 			Execute.Engine.DeleteSingleton();
+
+			#if(UNITY_EDITOR)
+			UnityEngine.Debug.Log("OnDisable");
+			#endif
 		}
 	}
 }

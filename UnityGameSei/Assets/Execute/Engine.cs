@@ -35,6 +35,10 @@ namespace Execute
 			s_instance = null;
 		}
 
+		/** append_list
+		*/
+		public System.Collections.Generic.List<AppEnd_Bases> append_list;
+
 		/** ÉVÅ[Éìä«óùÅB
 		*/
 		public BlueBack.Scene.Scene scene;
@@ -52,6 +56,9 @@ namespace Execute
 		*/
 		private Engine()
 		{
+			//append_list
+			this.append_list = null;
+
 			//scene
 			this.scene = null;
 			this.scene_list = null;
@@ -67,6 +74,11 @@ namespace Execute
 		*/
 		private void Dispose()
 		{
+			foreach(AppEnd_Bases t_append in this.append_list){
+				t_append.OnAppEnd();
+			}
+			this.append_list = null;
+
 			if(this.scene != null){
 				this.scene.Dispose();
 				this.scene = null;

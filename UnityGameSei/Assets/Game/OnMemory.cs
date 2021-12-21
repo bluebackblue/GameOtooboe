@@ -6,7 +6,7 @@ namespace Game
 {
 	/** èÌíìä«óùÅB
 	*/
-	public sealed class OnMemory
+	public sealed class OnMemory : Execute.AppEnd_Bases
 	{
 		/** [singleton]s_instance
 		*/
@@ -35,16 +35,35 @@ namespace Game
 			s_instance = null;
 		}
 
+		/** player
+		*/
+		public Player.Player player;
+
 		/** [singleton]constructor
 		*/
 		private OnMemory()
 		{
+			Execute.Engine.GetSingleton().append_list.Add(this);
+
+			//player
+			this.player = null;
 		}
 
 		/** [singleton]îjä¸ÅB
 		*/
 		private void Dispose()
 		{
+			if(this.player != null){
+				this.player.Dispose();
+				this.player = null;
+			}
+		}
+
+		/** [Execute.AppEnd_Bases]OnAppEnd
+		*/
+		public void OnAppEnd()
+		{
+			DeleteSingleton();
 		}
 	}
 }

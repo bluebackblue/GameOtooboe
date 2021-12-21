@@ -33,7 +33,7 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "001b87c64bf22ee7ca8140ea4750c6cbb287c974"
+      "hash": "4fa6f613dda2291c07ca5549d2da132042dd758d"
     },
     "blueback.jsonitem": {
       "version": "https://github.com/bluebackblue/UpmJsonItem.git?path=BlueBackJsonItem/Assets/UPM",

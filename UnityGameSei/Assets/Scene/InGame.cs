@@ -8,6 +8,14 @@ namespace Scene
 	*/
 	public sealed class InGame : BlueBack.Scene.Scene_Base
 	{
+		/** onmemory
+		*/
+		private Game.OnMemory onmemory;
+
+		/** time
+		*/
+		private int time;
+
 		/** constructor
 
 			常駐データ初期化。
@@ -15,6 +23,8 @@ namespace Scene
 		*/
 		public InGame()
 		{
+			//onmemory
+			this.onmemory = Game.OnMemory.GetSingleton();
 		}
 
 		/** [BlueBack.Scene.Scene_Base]シーン名。
@@ -56,6 +66,12 @@ namespace Scene
 		*/
 		public bool CurrentSceneStart(bool a_is_sceneloadend)
 		{
+			//onmemory
+			this.onmemory.player.StartInGame();
+
+			//time
+			this.time = 0;
+
 			return true;
 		}
 
@@ -66,6 +82,15 @@ namespace Scene
 		*/
 		public bool CurrentSceneRunning()
 		{
+			/* TODO:ゲームオーバー
+			this.time++;
+			if(this.time >= 100){
+				Execute.Engine t_engine = Execute.Engine.GetSingleton();
+				t_engine.scene.SetNextScene(t_engine.scene_list[(int)UnitySetting.SceneIndex.Title]);
+				return true;
+			}
+			*/
+
 			return false;
 		}
 
@@ -82,6 +107,9 @@ namespace Scene
 		*/
 		public bool CurrentSceneEnd()
 		{
+			//onmemory
+			this.onmemory.player.EndInGame();
+
 			return true;
 		}
 
@@ -89,6 +117,7 @@ namespace Scene
 		*/
 		public void UnityUpdate()
 		{
+			this.onmemory.player.UnityUpdate();
 		}
 
 		/** [BlueBack.Scene.Scene_Base]更新。
@@ -101,6 +130,7 @@ namespace Scene
 		*/
 		public void UnityFixedUpdate()
 		{
+			this.onmemory.player.UnityFixedUpdate();
 		}
 	}
 }

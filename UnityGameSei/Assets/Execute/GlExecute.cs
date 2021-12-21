@@ -18,8 +18,8 @@ namespace Execute
 				t_initparam.texture_max = 64;
 				t_initparam.material_max = 2;
 				t_initparam.sprite_max = 2;
-				t_initparam.width = 1280;
-				t_initparam.height = 720;
+				t_initparam.width = UnitySetting.Config.SCREEN_W;
+				t_initparam.height = UnitySetting.Config.SCREEN_H;
 			}
 			Engine.GetSingleton().gl = new BlueBack.Gl.Gl(in t_initparam);
 			BlueBack.Gl.Gl t_gl = Engine.GetSingleton().gl;
