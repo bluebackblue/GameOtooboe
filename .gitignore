@@ -1,0 +1,15 @@
+.vs
+Library
+Logs
+obj
+Temp
+Exe
+WebGL
+build.log
+.vsconfig
+ProjectVersion.txt
+*.log
+*.apk
+*.csproj
+*.sln
+*.dwlt
