@@ -146,6 +146,8 @@ namespace Execute
 						foreach(Game.Enemy.Enemy t_enemy in this.onmemory.enemy_list){
 							t_enemy.Reset();
 						}
+
+						this.onmemory.hud.Disp(true);
 					}else{
 						this.onmemory.param.gametime_sec += UnityEngine.Time.fixedDeltaTime;
 
@@ -157,6 +159,7 @@ namespace Execute
 							}
 						}
 						if(t_fix == true){
+							this.onmemory.hud.Disp(false);
 							a_questplayer.SetNextIndex(a_index + 1);
 							return;
 						}
@@ -177,6 +180,8 @@ namespace Execute
 						foreach(Game.Enemy.Enemy t_enemy in this.onmemory.enemy_list){
 							t_enemy.Reset();
 						}
+
+						this.onmemory.hud.Disp(true);
 					}else{
 						this.onmemory.param.gametime_sec += UnityEngine.Time.fixedDeltaTime;
 
@@ -188,6 +193,7 @@ namespace Execute
 							}
 						}
 						if(t_fix == true){
+							this.onmemory.hud.Disp(false);
 							a_questplayer.SetNextIndex(a_index + 1);
 							return;
 						}
@@ -195,6 +201,8 @@ namespace Execute
 				}break;
 			case GameData.QuestPlayer.CommandType.WaitSec:
 				{
+					//待ち。
+
 					if(a_first == true){
 						this.temp_sec = 0.0f;
 					}else{
@@ -212,6 +220,8 @@ namespace Execute
 				}break;
 			case GameData.QuestPlayer.CommandType.CountDown:
 				{
+					//カウントダウン。
+
 					if(a_first == true){
 						this.temp_sec = a_item.value_int - 0.001f;
 						this.countdown_text.text = a_item.value_string;
@@ -241,6 +251,8 @@ namespace Execute
 				}break;
 			case GameData.QuestPlayer.CommandType.Message:
 				{
+					//メッセージ。
+
 					if(a_first == true){
 						this.temp_sec = 0.0f;
 						this.message_text.text = a_item.value_string;
@@ -255,7 +267,7 @@ namespace Execute
 
 					//TODO:ここに直書き。
 
-					int t_x_offset = 222;
+					int t_x_offset = UnitySetting.Config.SCREEN_W;
 					int t_x;
 					int t_y = (int)(UnitySetting.Config.SCREEN_H * 0.6f);
 

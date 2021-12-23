@@ -16,6 +16,10 @@ namespace UnitySetting
 		*/
 		Transparent,
 
+		/** 加算。
+		*/
+		Additive,
+
 		/** 総数。
 		*/
 		Max,

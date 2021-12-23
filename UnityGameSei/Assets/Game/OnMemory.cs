@@ -41,9 +41,9 @@ namespace Game
 			s_instance = null;
 		}
 
-		/** player
+		/** hud
 		*/
-		public Player.Player player;
+		public Hud.Hud hud;
 
 		/** questplayer
 		*/
@@ -64,8 +64,8 @@ namespace Game
 		{
 			Execute.Engine.GetSingleton().append_list.Add(this);
 
-			//player
-			this.player = null;
+			//hud
+			this.hud = null;
 
 			//questplayer
 			this.questplayer = null;
@@ -82,9 +82,9 @@ namespace Game
 		*/
 		private void Dispose()
 		{
-			if(this.player != null){
-				this.player.Dispose();
-				this.player = null;
+			if(this.hud != null){
+				this.hud.Dispose();
+				this.hud = null;
 			}
 		}
 

@@ -4,16 +4,16 @@
 */
 namespace Execute
 {
-	/** PlayerExecute
+	/** HudExecute
 	*/
-	public sealed class PlayerExecute
+	public sealed class HudExecute
 	{
 		/** Boot
 		*/
 		public System.Collections.IEnumerator Boot()
 		{
 			Game.OnMemory t_onmemory = Game.OnMemory.GetSingleton();
-			t_onmemory.player = new Game.Player.Player();
+			t_onmemory.hud = new Game.Hud.Hud();
 
 			yield break;
 		}

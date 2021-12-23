@@ -27,6 +27,7 @@ namespace Execute
 			//materialexecutelist
 			t_gl.materialexecutelist.list[(int)UnitySetting.MaterialIndex.Opaque] = new BlueBack.Gl.MaterialExecute_SImple(t_gl,UnityEngine.Resources.Load<UnityEngine.Material>("Gl/opaque"));
 			t_gl.materialexecutelist.list[(int)UnitySetting.MaterialIndex.Transparent] = new BlueBack.Gl.MaterialExecute_SImple(t_gl,UnityEngine.Resources.Load<UnityEngine.Material>("Gl/transparent"));
+			t_gl.materialexecutelist.list[(int)UnitySetting.MaterialIndex.Additive] = new BlueBack.Gl.MaterialExecute_SImple(t_gl,UnityEngine.Resources.Load<UnityEngine.Material>("Gl/additive"));
 
 			//texturelist
 			t_gl.texturelist.list[(int)UnitySetting.TextureIndex.None] = UnityEngine.Texture2D.whiteTexture;

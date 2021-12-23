@@ -130,7 +130,7 @@ namespace Scene
 			t_engine.scene_list[(int)UnitySetting.SceneIndex.Result] = new Scene.Result();
 
 			//プレイヤー。
-			yield return new Execute.PlayerExecute().Boot();
+			yield return new Execute.HudExecute().Boot();
 
 			//クエストプレイヤー。
 			yield return new Execute.QuestPlayerExecute().Boot();

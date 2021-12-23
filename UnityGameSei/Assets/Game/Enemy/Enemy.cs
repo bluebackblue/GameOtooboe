@@ -21,6 +21,10 @@ namespace Game.Enemy
 		public BlueBack.Gl.SpriteIndex sprite;
 		public int sprite_x;
 
+		/** height
+		*/
+		public int height;
+
 		/** Mode
 		*/
 		public enum Mode
@@ -77,6 +81,8 @@ namespace Game.Enemy
 			#if(DEF_BLUEBACK_GL_DEBUGVIEW)
 			this.sprite.SetDebugName("sprite_enemy_" + a_index.ToString("D2"));
 			#endif
+
+			this.height = 128;
 		}
 
 		/** Reset
@@ -119,9 +125,9 @@ namespace Game.Enemy
 
 						float t_time = t_onmemory.param.gametime_sec - this.index * t_onmemory.param.popinterval;
 
-						int t_y_offset = 111;
+						int t_y_offset = 256;
 						int t_w = 64;
-						int t_h = 64;
+						int t_h = this.height;
 						int t_x = this.sprite_x - t_w / 2;
 						int t_y = UnitySetting.Config.SCREEN_H + t_y_offset - (int)(t_time * t_onmemory.param.movespeed);
 
@@ -132,6 +138,12 @@ namespace Game.Enemy
 							this.sprite.spritelist.buffer[this.sprite.index].visible = false;
 							this.mode = Mode.Out;
 						}
+
+						//ヒットチェック。
+						if((t_y <= t_onmemory.hud.bar_y)&&(t_onmemory.hud.bar_y <= t_y + t_h)){
+							t_onmemory.hud.onover_enemy = true;
+						}
+
 					}break;
 				case Mode.Out:
 					{
@@ -153,9 +165,9 @@ namespace Game.Enemy
 
 						float t_time = t_onmemory.param.gametime_sec - this.index * t_onmemory.param.popinterval;
 
-						int t_y_offset = 111;
+						int t_y_offset = 256;
 						int t_w = 64;
-						int t_h = 64;
+						int t_h = this.height;
 						int t_x = this.sprite_x - t_w / 2;
 						int t_y = (int)(t_time * t_onmemory.param.movespeed) - t_y_offset;
 
@@ -165,6 +177,11 @@ namespace Game.Enemy
 						if(t_y > UnitySetting.Config.SCREEN_H + t_y_offset){
 							this.sprite.spritelist.buffer[this.sprite.index].visible = false;
 							this.mode = Mode.Out;
+						}
+
+						//ヒットチェック。
+						if((t_y <= t_onmemory.hud.bar_y)&&(t_onmemory.hud.bar_y <= t_y + t_h)){
+							t_onmemory.hud.onover_enemy = true;
 						}
 					}break;
 				case Mode.Out:

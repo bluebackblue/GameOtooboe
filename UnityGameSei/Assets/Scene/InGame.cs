@@ -70,8 +70,8 @@ namespace Scene
 				//questplayer
 				this.onmemory.questplayer.Load(Game.OnMemory.GetSingleton().questplayer_dataindex);
 
-				//player
-				this.onmemory.player.StartInGame();
+				//hud
+				this.onmemory.hud.StartInGame();
 
 				return true;
 			}
@@ -114,8 +114,8 @@ namespace Scene
 		*/
 		public bool CurrentSceneEnd()
 		{
-			//onmemory
-			this.onmemory.player.EndInGame();
+			//hud
+			this.onmemory.hud.EndInGame();
 
 			//questplayer
 			this.onmemory.questplayer.UnLoad();
@@ -130,7 +130,8 @@ namespace Scene
 		*/
 		public void UnityUpdate()
 		{
-			this.onmemory.player.UnityUpdate();
+			//hud
+			this.onmemory.hud.UnityUpdate();
 		}
 
 		/** [BlueBack.Scene.Scene_Base]更新。
@@ -143,6 +144,9 @@ namespace Scene
 		*/
 		public void UnityFixedUpdate()
 		{
+			//hud
+			this.onmemory.hud.UnityFixedUpdate();
+
 			//questplayer
 			this.onmemory.questplayer.UnityFixedUpdate();
 
@@ -150,9 +154,6 @@ namespace Scene
 			foreach(Game.Enemy.Enemy t_enemy in this.onmemory.enemy_list){
 				t_enemy.UnityFixedUpdate();
 			}
-
-			//player
-			this.onmemory.player.UnityFixedUpdate();
 		}
 	}
 }
