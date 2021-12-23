@@ -150,7 +150,7 @@ namespace Execute
 							t_enemy.Reset();
 						}
 
-						this.onmemory.hud.Disp(true);
+						this.onmemory.hud.DispBar(true);
 					}else{
 						this.onmemory.param.gametime_sec += UnityEngine.Time.fixedDeltaTime;
 
@@ -162,7 +162,7 @@ namespace Execute
 							}
 						}
 						if(t_fix == true){
-							this.onmemory.hud.Disp(false);
+							this.onmemory.hud.DispBar(false);
 							a_questplayer.SetNextIndex(a_index + 1);
 							return;
 						}
@@ -184,7 +184,7 @@ namespace Execute
 							t_enemy.Reset();
 						}
 
-						this.onmemory.hud.Disp(true);
+						this.onmemory.hud.DispBar(true);
 					}else{
 						this.onmemory.param.gametime_sec += UnityEngine.Time.fixedDeltaTime;
 
@@ -196,7 +196,7 @@ namespace Execute
 							}
 						}
 						if(t_fix == true){
-							this.onmemory.hud.Disp(false);
+							this.onmemory.hud.DispBar(false);
 							a_questplayer.SetNextIndex(a_index + 1);
 							return;
 						}
@@ -305,8 +305,18 @@ namespace Execute
 					this.debug_text.text = t_debugtext_prefix;
 					#endif
 
-					//TODO:失敗した場合。
-					a_questplayer.SetResult(Game.QuestPlayer.QuestResult.Success);
+					bool t_success = true;
+					foreach(Game.Enemy.Enemy t_enemy in this.onmemory.enemy_list){
+						if(t_enemy.result != Game.Enemy.Enemy.Result.Success){
+							t_success = false;
+						}
+					}
+
+					if(t_success == true){
+						a_questplayer.SetResult(Game.QuestPlayer.QuestResult.Success);
+					}else{
+						a_questplayer.SetResult(Game.QuestPlayer.QuestResult.Faild);
+					}
 				}break;
 			default:
 				{

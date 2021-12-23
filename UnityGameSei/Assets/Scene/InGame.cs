@@ -70,8 +70,8 @@ namespace Scene
 				//questplayer
 				this.onmemory.questplayer.Load(Game.OnMemory.GetSingleton().questplayer_dataindex);
 
-				//hud
-				this.onmemory.hud.StartInGame();
+				//ライフ表示。
+				this.onmemory.hud.DispLife(true);
 
 				return true;
 			}
@@ -114,8 +114,8 @@ namespace Scene
 		*/
 		public bool CurrentSceneEnd()
 		{
-			//hud
-			this.onmemory.hud.EndInGame();
+			//ライフ非表示。
+			this.onmemory.hud.DispLife(false);
 
 			//questplayer
 			this.onmemory.questplayer.UnLoad();

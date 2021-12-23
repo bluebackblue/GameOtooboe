@@ -20,6 +20,10 @@ namespace Menu
 			*/
 			Next,
 
+			/** リトライ。
+			*/
+			Retry,
+
 			/** タイトル。
 			*/
 			Title,
@@ -37,9 +41,9 @@ namespace Menu
 		*/
 		public UnityEngine.UI.Text message_text;
 
-		/** all_clear
+		/** code
 		*/
-		public bool all_clear;
+		public Code code;
 
 		/** constructor
 		*/
@@ -73,19 +77,29 @@ namespace Menu
 			this.message_text.enabled = true;
 			this.message_text.font = Execute.Engine.GetSingleton().font;
 
-			//TODO:GameData.QuestPlayer.Dataから次が存在するかチェック。
-			if(Game.OnMemory.GetSingleton().questplayer_dataindex >= 2){
-				this.all_clear = true;
+			if(Game.OnMemory.GetSingleton().questplayer.result == Game.QuestPlayer.QuestResult.Success){
+				//TODO:GameData.QuestPlayer.Dataから次が存在するかチェック。
+				if(Game.OnMemory.GetSingleton().questplayer_dataindex >= 2){
+					this.code = Code.Title;
+					this.message_text.fontSize = 60;
+					this.message_text.text = "THANK YOU FOR PLAYING";
+				}else{
+					this.code = Code.Next;
+					this.message_text.fontSize = 120;
+					this.message_text.text = "正解";
+				}
 			}else{
-				this.all_clear = false;
-			}
+				Game.OnMemory.GetSingleton().param.life--;
 
-			if(this.all_clear == true){
-				this.message_text.fontSize = 60;
-				this.message_text.text = "THANK YOU FOR PLAYING";
-			}else{
-				this.message_text.fontSize = 120;
-				this.message_text.text = "正解";
+				if(Game.OnMemory.GetSingleton().param.life > 0){
+					this.code = Code.Retry;
+					this.message_text.fontSize = 120;
+					this.message_text.text = "不正解";
+				}else{
+					this.code = Code.Title;
+					this.message_text.fontSize = 120;
+					this.message_text.text = "不正解";
+				}
 			}
 		}
 
@@ -93,6 +107,7 @@ namespace Menu
 		*/
 		public void End()
 		{
+			//message_text
 			this.message_text.enabled = false;
 		}
 
@@ -121,11 +136,7 @@ namespace Menu
 		{
 			if(this.lockflag == false){
 				if(this.engine.mouse_fixedupdate.left.down == true){
-					if(this.all_clear == true){
-						this.eventcallback.Call((int)Code.Title);
-					}else{
-						this.eventcallback.Call((int)Code.Next);
-					}
+					this.eventcallback.Call((int)this.code);
 				}
 			}
 		}

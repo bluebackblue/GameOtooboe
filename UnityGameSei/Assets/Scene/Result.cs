@@ -8,6 +8,10 @@ namespace Scene
 	*/
 	public sealed class Result : BlueBack.Scene.Scene_Base , Menu.EventCallBack_Base
 	{
+		/** onmemory
+		*/
+		private Game.OnMemory onmemory;
+
 		/** menu
 		*/
 		private Menu.Menu_Base menu;
@@ -16,6 +20,10 @@ namespace Scene
 		*/
 		private bool endflag;
 
+		/** code
+		*/
+		private Menu.Result.Code code;
+
 		/** constructor
 
 			常駐データ初期化。
@@ -23,6 +31,10 @@ namespace Scene
 		*/
 		public Result()
 		{
+			//onmemory
+			this.onmemory = Game.OnMemory.GetSingleton();
+
+			//menu
 			this.menu = new Menu.Result(this);
 		}
 
@@ -68,6 +80,10 @@ namespace Scene
 		{
 			if(a_is_sceneloadend == true){
 				this.menu.Start();
+
+				//ライフ表示。
+				this.onmemory.hud.DispLife(true);
+
 				return true;
 			}
 			return false;
@@ -96,6 +112,9 @@ namespace Scene
 		*/
 		public bool CurrentSceneEnd()
 		{
+			//ライフ非表示。
+			this.onmemory.hud.DispLife(false);
+
 			this.menu.End();
 			return true;
 		}
@@ -104,6 +123,8 @@ namespace Scene
 		*/
 		public void UnityUpdate()
 		{
+			//hud
+			this.onmemory.hud.UnityUpdate();
 		}
 
 		/** [BlueBack.Scene.Scene_Base]更新。
@@ -116,6 +137,10 @@ namespace Scene
 		*/
 		public void UnityFixedUpdate()
 		{
+			//hud
+			this.onmemory.hud.UnityFixedUpdate();
+
+			//menu
 			this.menu.UnityFixedUpdate();
 		}
 
@@ -132,8 +157,10 @@ namespace Scene
 			//最初から。
 			Game.OnMemory.GetSingleton().questplayer_dataindex = 1;
 
+			//code
+			this.code = (Menu.Result.Code)a_code;
 
-			switch((Menu.Result.Code)a_code){
+			switch(this.code){
 			case Menu.Result.Code.Next:
 				{
 					//インゲームへ。
@@ -147,6 +174,12 @@ namespace Scene
 					//タイトルへ。
 					this.endflag = true;
 					Execute.Engine.GetSingleton().scene.SetNextScene(Execute.Engine.GetSingleton().scene_list[(int)UnitySetting.SceneIndex.Title]);
+				}break;
+			case Menu.Result.Code.Retry:
+				{
+					//インゲームへ。
+					this.endflag = true;
+					Execute.Engine.GetSingleton().scene.SetNextScene(Execute.Engine.GetSingleton().scene_list[(int)UnitySetting.SceneIndex.InGame]);
 				}break;
 			}
 		}

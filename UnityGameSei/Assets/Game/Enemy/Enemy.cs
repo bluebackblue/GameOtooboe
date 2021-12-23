@@ -42,9 +42,34 @@ namespace Game.Enemy
 			Out,
 		}
 
+		/** Result
+		*/
+		public enum Result
+		{
+			/** 未設定。
+			*/
+			None,
+
+			/** 正解。
+			*/
+			Success,
+
+			/** 失敗。
+			*/
+			Miss,
+
+			/** 時間切れ。
+			*/
+			TimeOut,
+		}
+
 		/** mode
 		*/
 		public Mode mode;
+
+		/** result
+		*/
+		public Result result;
 
 		/** constructor
 		*/
@@ -85,12 +110,19 @@ namespace Game.Enemy
 			this.height = 128;
 		}
 
+		/** Damage
+		*/
+		public void Damage()
+		{
+		}
+
 		/** Reset
 		*/
 		public void Reset()
 		{
 			this.mode = Game.Enemy.Enemy.Mode.In;
 			this.sprite.spritelist.buffer[this.sprite.index].visible = false;
+			this.result = Result.None;
 		}
 
 		/** [System.IDisposable]Dispose
@@ -135,8 +167,9 @@ namespace Game.Enemy
 						BlueBack.Gl.SpriteTool.SetXYWH(ref this.sprite.spritelist.buffer[this.sprite.index],t_x,t_y,t_w,t_h,UnitySetting.Config.SCREEN_W,UnitySetting.Config.SCREEN_H);
 
 						if(t_y < - t_y_offset){
-							this.sprite.spritelist.buffer[this.sprite.index].visible = false;
 							this.mode = Mode.Out;
+							this.sprite.spritelist.buffer[this.sprite.index].visible = false;
+							break;
 						}
 
 						//ヒットチェック。
@@ -175,13 +208,80 @@ namespace Game.Enemy
 						BlueBack.Gl.SpriteTool.SetXYWH(ref this.sprite.spritelist.buffer[this.sprite.index],t_x,t_y,t_w,t_h,UnitySetting.Config.SCREEN_W,UnitySetting.Config.SCREEN_H);
 
 						if(t_y > UnitySetting.Config.SCREEN_H + t_y_offset){
-							this.sprite.spritelist.buffer[this.sprite.index].visible = false;
 							this.mode = Mode.Out;
 						}
 
 						//ヒットチェック。
-						if((t_y <= t_onmemory.hud.bar_y)&&(t_onmemory.hud.bar_y <= t_y + t_h)){
-							t_onmemory.hud.onover_enemy = true;
+						if((this.result == Result.None)&&(Game.OnMemory.GetSingleton().param.life > 0)){
+							if((t_y <= t_onmemory.hud.bar_y)&&(t_onmemory.hud.bar_y <= t_y + t_h)){
+								t_onmemory.hud.onover_enemy = true;
+
+								if(Execute.Engine.GetSingleton().mouse_fixedupdate.left.down == true){
+									if(this.position == 1){
+										//成功。
+										this.result = Result.Success;
+										this.mode = Mode.Out;
+										this.sprite.spritelist.buffer[this.sprite.index].visible = false;
+
+										#if(UNITY_EDITOR)
+										UnityEngine.Debug.Log("success");
+										#endif
+
+										break;
+									}else{
+										//ミス。
+										this.result = Result.Miss;
+										//this.mode = Mode.Out;
+										this.sprite.spritelist.buffer[this.sprite.index].visible = false;
+
+										#if(UNITY_EDITOR)
+										UnityEngine.Debug.Log("miss");
+										#endif
+
+										this.Damage();
+
+										break;
+									}
+								}else if(Execute.Engine.GetSingleton().mouse_fixedupdate.right.down == true){
+									if(this.position == 2){
+										//成功。
+										this.result = Result.Success;
+										this.mode = Mode.Out;
+										this.sprite.spritelist.buffer[this.sprite.index].visible = false;
+
+										#if(UNITY_EDITOR)
+										UnityEngine.Debug.Log("success");
+										#endif
+
+										break;
+									}else{
+										//ミス。
+										this.result = Result.Miss;
+										//this.mode = Mode.Out;
+										this.sprite.spritelist.buffer[this.sprite.index].visible = false;
+
+										#if(UNITY_EDITOR)
+										UnityEngine.Debug.Log("miss");
+										#endif
+
+										this.Damage();
+
+										break;
+									}
+								}
+							}else if(t_y > t_onmemory.hud.bar_y){
+							
+								this.result = Result.TimeOut;
+								this.sprite.spritelist.buffer[this.sprite.index].visible = false;
+
+								#if(UNITY_EDITOR)
+								UnityEngine.Debug.Log("timeout");
+								#endif
+
+								this.Damage();
+
+								break;
+							}
 						}
 					}break;
 				case Mode.Out:

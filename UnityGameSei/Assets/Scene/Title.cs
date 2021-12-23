@@ -132,6 +132,9 @@ namespace Scene
 			//最初から。
 			Game.OnMemory.GetSingleton().questplayer_dataindex = 1;
 
+			//ライフ。
+			Game.OnMemory.GetSingleton().param.life = 4;
+
 			//インゲームへ。
 			this.endflag = true;
 			Execute.Engine.GetSingleton().scene.SetNextScene(Execute.Engine.GetSingleton().scene_list[(int)UnitySetting.SceneIndex.InGame]);

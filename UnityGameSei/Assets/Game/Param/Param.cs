@@ -23,6 +23,10 @@ namespace Game.Param
 		/** popinterval
 		*/
 		public float popinterval;
+
+		/** life
+		*/
+		public int life;
 	}
 }
 
