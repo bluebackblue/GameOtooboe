@@ -16,6 +16,10 @@ namespace Game
 		*/
 		public static OnMemory CreateSingleton()
 		{
+			#if(UNITY_EDITOR)
+			UnityEngine.Debug.Assert(s_instance == null);
+			#endif
+
 			s_instance = new OnMemory();
 			return s_instance;
 		}
@@ -31,6 +35,8 @@ namespace Game
 		*/
 		public static void DeleteSingleton()
 		{
+			UnityEngine.Debug.Log("OnMemory.DeleteSingleton");
+
 			s_instance.Dispose();
 			s_instance = null;
 		}
@@ -44,6 +50,15 @@ namespace Game
 		public QuestPlayer.QuestPlayer<GameData.QuestPlayer.QuestItem> questplayer;
 		public int questplayer_dataindex;
 
+		/** enemy_list
+		*/
+		public System.Collections.Generic.List<Game.Enemy.Enemy> enemy_list;
+		public int enemy_waittime;
+
+		/** param
+		*/
+		public Param.Param param;
+
 		/** [singleton]constructor
 		*/
 		private OnMemory()
@@ -56,6 +71,13 @@ namespace Game
 			//questplayer
 			this.questplayer = null;
 			this.questplayer_dataindex = 0;
+
+			//enemy_list
+			this.enemy_list = null;
+			this.enemy_waittime = 0;
+
+			//param
+			this.param = null;
 		}
 
 		/** [singleton]破棄。

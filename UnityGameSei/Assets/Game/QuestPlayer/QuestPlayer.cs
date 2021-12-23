@@ -53,6 +53,14 @@ namespace Game.QuestPlayer
 			this.result = QuestResult.Do;
 		}
 
+		/** UnLoad
+		*/
+		public void UnLoad()
+		{
+			this.execute.UnLoad();
+			this.list = null;
+		}
+
 		/** SetNextIndex
 		*/
 		public void SetNextIndex(int a_index)
@@ -73,10 +81,12 @@ namespace Game.QuestPlayer
 		*/
 		public void UnityFixedUpdate()
 		{
-			if(this.index < this.list.Length){
-				this.first_next = false;
-				this.execute.UnityFixedUpdate(this,ref this.list[this.index],this.index,this.first);
-				this.first = this.first_next;
+			if(this.list != null){
+				if(this.index < this.list.Length){
+					this.first_next = false;
+					this.execute.UnityFixedUpdate(this,ref this.list[this.index],this.index,this.first);
+					this.first = this.first_next;
+				}
 			}
 		}
 	}

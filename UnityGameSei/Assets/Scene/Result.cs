@@ -4,13 +4,17 @@
 */
 namespace Scene
 {
-	/** インゲーム。
+	/** リザルト。
 	*/
-	public sealed class Result : BlueBack.Scene.Scene_Base
+	public sealed class Result : BlueBack.Scene.Scene_Base , Menu.EventCallBack_Base
 	{
-		/** onmemory
+		/** menu
 		*/
-		private Game.OnMemory onmemory;
+		private Menu.Menu_Base menu;
+
+		/** endflag
+		*/
+		private bool endflag;
 
 		/** constructor
 
@@ -19,8 +23,7 @@ namespace Scene
 		*/
 		public Result()
 		{
-			//onmemory
-			this.onmemory = Game.OnMemory.GetSingleton();
+			this.menu = new Menu.Result(this);
 		}
 
 		/** [BlueBack.Scene.Scene_Base]シーン名。
@@ -52,6 +55,8 @@ namespace Scene
 		*/
 		public void CurrentSceneStartFirst()
 		{
+			this.endflag = false;
+			this.menu.Start();
 		}
 
 		/** [BlueBack.Scene.Scene_Base]カレントシーン。開始。
@@ -62,9 +67,6 @@ namespace Scene
 		*/
 		public bool CurrentSceneStart(bool a_is_sceneloadend)
 		{
-			//onmemory
-			this.onmemory.player.StartInGame();
-
 			return true;
 		}
 
@@ -75,16 +77,7 @@ namespace Scene
 		*/
 		public bool CurrentSceneRunning()
 		{
-			/* TODO:ゲームオーバー
-			this.time++;
-			if(this.time >= 100){
-				Execute.Engine t_engine = Execute.Engine.GetSingleton();
-				t_engine.scene.SetNextScene(t_engine.scene_list[(int)UnitySetting.SceneIndex.Title]);
-				return true;
-			}
-			*/
-
-			return false;
+			return this.endflag;
 		}
 
 		/** [BlueBack.Scene.Scene_Base]カレントシーン。終了。初回。
@@ -100,9 +93,7 @@ namespace Scene
 		*/
 		public bool CurrentSceneEnd()
 		{
-			//onmemory
-			this.onmemory.player.EndInGame();
-
+			this.menu.End();
 			return true;
 		}
 
@@ -110,7 +101,6 @@ namespace Scene
 		*/
 		public void UnityUpdate()
 		{
-			this.onmemory.player.UnityUpdate();
 		}
 
 		/** [BlueBack.Scene.Scene_Base]更新。
@@ -123,7 +113,39 @@ namespace Scene
 		*/
 		public void UnityFixedUpdate()
 		{
-			this.onmemory.player.UnityFixedUpdate();
+			this.menu.UnityFixedUpdate();
+		}
+
+		/** [Menu.EventCallBack_Base]Call
+
+			a_code : いろいろ。
+
+		*/
+		public void Call(int a_code)
+		{
+			//メニュー。操作。ロック。
+			this.menu.Lock();
+
+			//最初から。
+			Game.OnMemory.GetSingleton().questplayer_dataindex = 1;
+
+
+			switch((Menu.Result.Code)a_code){
+			case Menu.Result.Code.Next:
+				{
+					//インゲームへ。
+					this.endflag = true;
+					Execute.Engine.GetSingleton().scene.SetNextScene(Execute.Engine.GetSingleton().scene_list[(int)UnitySetting.SceneIndex.InGame]);
+
+					Game.OnMemory.GetSingleton().questplayer_dataindex++;
+				}break;
+			case Menu.Result.Code.Title:
+				{
+					//タイトルへ。
+					this.endflag = true;
+					Execute.Engine.GetSingleton().scene.SetNextScene(Execute.Engine.GetSingleton().scene_list[(int)UnitySetting.SceneIndex.Title]);
+				}break;
+			}
 		}
 	}
 }

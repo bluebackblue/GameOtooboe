@@ -38,9 +38,13 @@ namespace GameData.QuestPlayer.Editor
 			*/
 			public int index;
 
-			/** value
+			/** value_int
 			*/
-			public int value;
+			public int value_int;
+
+			/** value_string
+			*/
+			public string value_string;
 		}
 
 		/** ConvertAll
@@ -76,9 +80,9 @@ namespace GameData.QuestPlayer.Editor
 					{
 						QuestItem t_questitem;
 						{
-							t_questitem.index = t_sheet[ii].index;
-							t_questitem.value = t_sheet[ii].value;
-							t_questitem.questtype = System.Enum.Parse<GameData.QuestPlayer.QuestType>(t_sheet[ii].param);
+							t_questitem.value_int = t_sheet[ii].value_int;
+							t_questitem.value_string = t_sheet[ii].value_string;
+							t_questitem.command = System.Enum.Parse<GameData.QuestPlayer.CommandType>(t_sheet[ii].param);
 						}
 						t_data_list.Add(t_questitem);
 					}break;

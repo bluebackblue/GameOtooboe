@@ -16,6 +16,10 @@ namespace Execute
 		*/
 		public static Engine CreateSingleton()
 		{
+			#if(UNITY_EDITOR)
+			UnityEngine.Debug.Assert(s_instance == null);
+			#endif
+
 			s_instance = new Engine();
 			return s_instance;
 		}

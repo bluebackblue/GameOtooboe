@@ -14,13 +14,17 @@ namespace Scene
 	{
 		/** s_monobehaviour
 		*/
-		public static UnityEngine.MonoBehaviour s_monobehaviour;
+		public static UnityEngine.MonoBehaviour s_monobehaviour = null;
 
 		/** Initialize
 		*/
 		[UnityEngine.RuntimeInitializeOnLoadMethod]
 		private static void Initialize()
 		{
+			#if(UNITY_EDITOR)
+			UnityEngine.Debug.Log("Boot_MonoBehaviour.Initialize");
+			#endif
+
 			//削除時にデフォルトに戻す。
 			BlueBack.UnityPlayerLoop.UnityPlayerLoop.SetDefaultPlayerLoopOnUnityDestroy();
 
@@ -40,12 +44,12 @@ namespace Scene
 		*/
 		private void OnDisable()
 		{
+			#if(UNITY_EDITOR)
+			UnityEngine.Debug.Log("Boot_MonoBehaviour.OnDisable");
+			#endif
+
 			//エンジン関連。
 			Execute.Engine.DeleteSingleton();
-
-			#if(UNITY_EDITOR)
-			UnityEngine.Debug.Log("OnDisable");
-			#endif
 		}
 	}
 }

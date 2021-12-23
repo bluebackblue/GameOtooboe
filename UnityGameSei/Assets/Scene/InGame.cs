@@ -64,6 +64,9 @@ namespace Scene
 		{
 			if(a_is_sceneloadend == true){
 
+				//enemy_list
+				this.onmemory.enemy_list = new System.Collections.Generic.List<Game.Enemy.Enemy>();
+
 				//questplayer
 				this.onmemory.questplayer.Load(Game.OnMemory.GetSingleton().questplayer_dataindex);
 
@@ -89,7 +92,7 @@ namespace Scene
 			case Game.QuestPlayer.QuestResult.Faild:
 				{
 					Execute.Engine t_engine = Execute.Engine.GetSingleton();
-					t_engine.scene.SetNextScene(t_engine.scene_list[(int)UnitySetting.SceneIndex.Title]);
+					t_engine.scene.SetNextScene(t_engine.scene_list[(int)UnitySetting.SceneIndex.Result]);
 					return true;
 				}break;
 			}
@@ -114,6 +117,12 @@ namespace Scene
 			//onmemory
 			this.onmemory.player.EndInGame();
 
+			//questplayer
+			this.onmemory.questplayer.UnLoad();
+
+			//enemy_list
+			this.onmemory.enemy_list = null;
+
 			return true;
 		}
 
@@ -136,6 +145,11 @@ namespace Scene
 		{
 			//questplayer
 			this.onmemory.questplayer.UnityFixedUpdate();
+
+			//enemy
+			foreach(Game.Enemy.Enemy t_enemy in this.onmemory.enemy_list){
+				t_enemy.UnityFixedUpdate();
+			}
 
 			//player
 			this.onmemory.player.UnityFixedUpdate();

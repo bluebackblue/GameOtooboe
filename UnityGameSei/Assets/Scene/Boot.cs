@@ -114,6 +114,9 @@ namespace Scene
 			Game.OnMemory.CreateSingleton();
 			Game.OnMemory t_onmemory = Game.OnMemory.GetSingleton();
 
+			//パラメータ。
+			yield return new Execute.ParamExecute().Boot();
+
 			//ＧＬ。
 			yield return new Execute.GlExecute().Boot();
 

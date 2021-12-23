@@ -9,17 +9,17 @@ namespace GameData.QuestPlayer
 	[System.Serializable]
 	public struct QuestItem
 	{
-		/** questtype
+		/** command
 		*/
-		public QuestType questtype;
+		public CommandType command;
 
-		/** index
+		/** value_int
 		*/
-		public int index;
+		public int value_int;
 
-		/** value
+		/** value_string
 		*/
-		public int value;
+		public string value_string;
 	}
 }
 

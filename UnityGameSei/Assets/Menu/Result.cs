@@ -1,12 +1,12 @@
-
+﻿
 
 /** Menu
 */
 namespace Menu
 {
-	/** Title
+	/** Result
 	*/
-	public sealed class Title : Menu_Base
+	public sealed class Result : Menu_Base
 	{
 		/** eventcallback
 		*/
@@ -16,7 +16,8 @@ namespace Menu
 		*/
 		public enum Code
 		{
-			Success = 0,
+			Next,
+			Title,
 		}
 
 		/** engine
@@ -29,11 +30,15 @@ namespace Menu
 
 		/** sprite_startbutton
 		*/
-		public BlueBack.Gl.SpriteIndex sprite_startbutton;
+		//public BlueBack.Gl.SpriteIndex sprite_startbutton;
+
+		/** all_clear
+		*/
+		public bool all_clear;
 
 		/** constructor
 		*/
-		public Title(EventCallBack_Base a_eventcallback)
+		public Result(EventCallBack_Base a_eventcallback)
 		{
 			//eventcallback
 			this.eventcallback = a_eventcallback;
@@ -44,6 +49,7 @@ namespace Menu
 			//lockflag
 			this.lockflag = false;
 
+			/*
 			//sprite_startbutton
 			{
 				int t_w = 256;
@@ -55,6 +61,9 @@ namespace Menu
 				this.sprite_startbutton.SetDebugName("title_startbutton");
 				#endif
 			}
+			*/
+
+
 		}
 
 		/** [Menu.Menu_Base]破棄。
@@ -67,15 +76,33 @@ namespace Menu
 		*/
 		public void Start()
 		{
+			/*
 			this.sprite_startbutton.spritelist.buffer[this.sprite_startbutton.index].visible = true;
+			*/
+
 			this.lockflag = false;
+
+			//TODO:GameData.QuestPlayer.Dataから次が存在するかチェック。
+			if(Game.OnMemory.GetSingleton().questplayer_dataindex >= 2){
+				this.all_clear = true;
+			}else{
+				this.all_clear = false;
+			}
+
+			if(this.all_clear == true){
+				UnityEngine.GameObject.Find("Result_Text").GetComponent<UnityEngine.UI.Text>().text = "THANK YOU FOR PLAYING";
+			}else{
+				UnityEngine.GameObject.Find("Result_Text").GetComponent<UnityEngine.UI.Text>().text = "正解";
+			}
 		}
 
 		/** [Menu.Menu_Base]End
 		*/
 		public void End()
 		{
+			/*
 			this.sprite_startbutton.spritelist.buffer[this.sprite_startbutton.index].visible = false;
+			*/
 		}
 
 		/** [Menu.Menu_Base]Lock
@@ -103,7 +130,11 @@ namespace Menu
 		{
 			if(this.lockflag == false){
 				if(this.engine.mouse_fixedupdate.left.down == true){
-					this.eventcallback.Call((int)Code.Success);
+					if(this.all_clear == true){
+						this.eventcallback.Call((int)Code.Title);
+					}else{
+						this.eventcallback.Call((int)Code.Next);
+					}
 				}
 			}
 		}

@@ -45,21 +45,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   list:
-  - questtype: 0
-    index: 0
-    value: 5
-  - questtype: 1
-    index: 0
-    value: 0
-  - questtype: 2
-    index: 0
-    value: 0
-  - questtype: 3
-    index: 0
-    value: 1
-  - questtype: 3
-    index: 1
-    value: 2
-  - questtype: 3
-    index: 0
-    value: 1
+  - command: 0
+    value_int: 1
+    value_string: 
+  - command: 1
+    value_int: 0
+    value_string: Quest_02
+  - command: 2
+    value_int: 3
+    value_string: 
+  - command: 3
+    value_int: 0
+    value_string: 
+  - command: 1
+    value_int: 0
+    value_string: "\u958B\u59CB"
+  - command: 2
+    value_int: 3
+    value_string: 
+  - command: 4
+    value_int: 0
+    value_string: 
+  - command: 5
+    value_int: 0
+    value_string: 
+  - command: 6
+    value_int: 1
+    value_string: 
+  - command: 6
+    value_int: 2
+    value_string: 
+  - command: 6
+    value_int: 1
+    value_string: 
