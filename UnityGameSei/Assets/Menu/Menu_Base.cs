@@ -8,7 +8,7 @@ namespace Menu
 	*/
 	public interface Menu_Base
 	{
-		/** [Menu.Menu_Base]”jŠüB
+		/** [Menu.Menu_Base]ç ´æ£„ã€‚
 		*/
 		void Dispose();
 
@@ -24,15 +24,15 @@ namespace Menu
 		*/
 		void Lock();
 
-		/** [Menu.Menu_Base]XVB
+		/** [Menu.Menu_Base]æ›´æ–°ã€‚
 		*/
 		void UnityUpdate();
 
-		/** [Menu.Menu_Base]XVB
+		/** [Menu.Menu_Base]æ›´æ–°ã€‚
 		*/
 		void UnityLateUpdate();
 
-		/** [Menu.Menu_Base]XVB
+		/** [Menu.Menu_Base]æ›´æ–°ã€‚
 		*/
 		void UnityFixedUpdate();
 

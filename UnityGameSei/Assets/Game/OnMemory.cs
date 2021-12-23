@@ -4,7 +4,7 @@
 */
 namespace Game
 {
-	/** í’“ŠÇ—B
+	/** å¸¸é§ç®¡ç†ã€‚
 	*/
 	public sealed class OnMemory : Execute.AppEnd_Bases
 	{
@@ -12,7 +12,7 @@ namespace Game
 		*/
 		private static OnMemory s_instance = null;
 
-		/** [singleton]ì¬B
+		/** [singleton]ä½œæˆã€‚
 		*/
 		public static OnMemory CreateSingleton()
 		{
@@ -20,14 +20,14 @@ namespace Game
 			return s_instance;
 		}
 
-		/** [singleton]æ“¾B
+		/** [singleton]å–å¾—ã€‚
 		*/
 		public static OnMemory GetSingleton()
 		{
 			return s_instance;
 		}
 
-		/** [singleton]íœB
+		/** [singleton]å‰Šé™¤ã€‚
 		*/
 		public static void DeleteSingleton()
 		{
@@ -39,6 +39,11 @@ namespace Game
 		*/
 		public Player.Player player;
 
+		/** questplayer
+		*/
+		public QuestPlayer.QuestPlayer<GameData.QuestPlayer.QuestItem> questplayer;
+		public int questplayer_dataindex;
+
 		/** [singleton]constructor
 		*/
 		private OnMemory()
@@ -47,9 +52,13 @@ namespace Game
 
 			//player
 			this.player = null;
+
+			//questplayer
+			this.questplayer = null;
+			this.questplayer_dataindex = 0;
 		}
 
-		/** [singleton]”jŠüB
+		/** [singleton]ç ´æ£„ã€‚
 		*/
 		private void Dispose()
 		{

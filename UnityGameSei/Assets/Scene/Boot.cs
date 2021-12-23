@@ -1,6 +1,6 @@
 
 
-/** @brief ƒu[ƒgB
+/** @brief ãƒ–ãƒ¼ãƒˆã€‚
 */
 
 
@@ -16,32 +16,32 @@ namespace Scene
 		*/
 		public bool endflag;
 
-		/** [BlueBack.Scene.Scene_Base]ƒV[ƒ“–¼B
+		/** [BlueBack.Scene.Scene_Base]ã‚·ãƒ¼ãƒ³åã€‚
 		*/
 		public string GetSceneName()
 		{
 			return null;
 		}
 
-		/** [BlueBack.Scene.Scene_Base]‘OƒV[ƒ“BI—¹B‰‰ñB
+		/** [BlueBack.Scene.Scene_Base]å‰ã‚·ãƒ¼ãƒ³ã€‚çµ‚äº†ã€‚åˆå›ã€‚
 		*/
 		public void BeforeSceneEndFirst()
 		{
 		}
 
-		/** [BlueBack.Scene.Scene_Base]‘OƒV[ƒ“BI—¹B
+		/** [BlueBack.Scene.Scene_Base]å‰ã‚·ãƒ¼ãƒ³ã€‚çµ‚äº†ã€‚
 		*/
 		public void BeforeSceneEnd()
 		{
 		}
 
-		/** [BlueBack.Scene.Scene_Base]‘OƒV[ƒ“BI—¹Bƒ‰ƒXƒgB
+		/** [BlueBack.Scene.Scene_Base]å‰ã‚·ãƒ¼ãƒ³ã€‚çµ‚äº†ã€‚ãƒ©ã‚¹ãƒˆã€‚
 		*/
 		public void BeforeSceneEndLast()
 		{
 		}
 
-		/** [BlueBack.Scene.Scene_Base]ƒJƒŒƒ“ƒgƒV[ƒ“BŠJnB‰‰ñB
+		/** [BlueBack.Scene.Scene_Base]ã‚«ãƒ¬ãƒ³ãƒˆã‚·ãƒ¼ãƒ³ã€‚é–‹å§‹ã€‚åˆå›ã€‚
 		*/
 		public void CurrentSceneStartFirst()
 		{
@@ -49,10 +49,10 @@ namespace Scene
 			Boot_MonoBehaviour.s_monobehaviour.StartCoroutine(this.CoroutineMain());
 		}
 
-		/** [BlueBack.Scene.Scene_Base]ƒJƒŒƒ“ƒgƒV[ƒ“BŠJnB
+		/** [BlueBack.Scene.Scene_Base]ã‚«ãƒ¬ãƒ³ãƒˆã‚·ãƒ¼ãƒ³ã€‚é–‹å§‹ã€‚
 
-			a_is_sceneloadend	: ƒV[ƒ“‚Ì“Ç‚İ‚İ‚ªŠ®—¹‚µ‚½‚©‚Ç‚¤‚©B 
-			return == true		: CurrentSceneRunning‚Ö‚Ì‘JˆÚ‚ğ‹–‰ÂB
+			a_is_sceneloadend	: ã‚·ãƒ¼ãƒ³ã®èª­ã¿è¾¼ã¿ãŒå®Œäº†ã—ãŸã‹ã©ã†ã‹ã€‚ 
+			return == true		: CurrentSceneRunningã¸ã®é·ç§»ã‚’è¨±å¯ã€‚
 
 		*/
 		public bool CurrentSceneStart(bool a_is_sceneloadend)
@@ -60,9 +60,9 @@ namespace Scene
 			return true;
 		}
 
-		/** [BlueBack.Scene.Scene_Base]ƒJƒŒƒ“ƒgƒV[ƒ“BÀsB
+		/** [BlueBack.Scene.Scene_Base]ã‚«ãƒ¬ãƒ³ãƒˆã‚·ãƒ¼ãƒ³ã€‚å®Ÿè¡Œã€‚
 
-			return == true : CurrentSceneEndFirst‚Ö‚Ì‘JˆÚ‚ğ‹–‰ÂB
+			return == true : CurrentSceneEndFirstã¸ã®é·ç§»ã‚’è¨±å¯ã€‚
 
 		*/
 		public bool CurrentSceneRunning()
@@ -70,15 +70,15 @@ namespace Scene
 			return this.endflag;
 		}
 
-		/** [BlueBack.Scene.Scene_Base]ƒJƒŒƒ“ƒgƒV[ƒ“BI—¹B‰‰ñB
+		/** [BlueBack.Scene.Scene_Base]ã‚«ãƒ¬ãƒ³ãƒˆã‚·ãƒ¼ãƒ³ã€‚çµ‚äº†ã€‚åˆå›ã€‚
 		*/
 		public void CurrentSceneEndFirst()
 		{
 		}
 
-		/** [BlueBack.Scene.Scene_Base]ƒJƒŒƒ“ƒgƒV[ƒ“BI—¹B
+		/** [BlueBack.Scene.Scene_Base]ã‚«ãƒ¬ãƒ³ãƒˆã‚·ãƒ¼ãƒ³ã€‚çµ‚äº†ã€‚
 
-			return == true : ƒV[ƒ“‘JˆÚ‚ğ‹–‰ÂB
+			return == true : ã‚·ãƒ¼ãƒ³é·ç§»ã‚’è¨±å¯ã€‚
 
 		*/
 		public bool CurrentSceneEnd()
@@ -86,19 +86,19 @@ namespace Scene
 			return true;
 		}
 
-		/** [BlueBack.Scene.Scene_Base]XVB
+		/** [BlueBack.Scene.Scene_Base]æ›´æ–°ã€‚
 		*/
 		public void UnityUpdate()
 		{
 		}
 
-		/** [BlueBack.Scene.Scene_Base]XVB
+		/** [BlueBack.Scene.Scene_Base]æ›´æ–°ã€‚
 		*/
 		public void UnityLateUpdate()
 		{
 		}
 
-		/** [BlueBack.Scene.Scene_Base]XVB
+		/** [BlueBack.Scene.Scene_Base]æ›´æ–°ã€‚
 		*/
 		public void UnityFixedUpdate()
 		{
@@ -109,27 +109,30 @@ namespace Scene
 		private System.Collections.IEnumerator CoroutineMain()
 		{
 			Execute.Engine t_engine = Execute.Engine.GetSingleton();
-			UnityEngine.MonoBehaviour t_monobehaviour = Boot_MonoBehaviour.s_monobehaviour;
 
-			//í’“B
+			//å¸¸é§ã€‚
 			Game.OnMemory.CreateSingleton();
 			Game.OnMemory t_onmemory = Game.OnMemory.GetSingleton();
 
-			//‚f‚kB
-			t_monobehaviour.StartCoroutine(new Execute.GlExecute().Boot());
+			//ï¼§ï¼¬ã€‚
+			yield return new Execute.GlExecute().Boot();
 
-			//ƒ}ƒEƒXB
-			t_monobehaviour.StartCoroutine(new Execute.MouseExecute().Boot());
+			//ãƒã‚¦ã‚¹ã€‚
+			yield return new Execute.MouseExecute().Boot();
 
-			//ƒV[ƒ“B
+			//ã‚·ãƒ¼ãƒ³ã€‚
 			t_engine.scene_list = new BlueBack.Scene.Scene_Base[(int)UnitySetting.SceneIndex.Max];
 			t_engine.scene_list[(int)UnitySetting.SceneIndex.Title] = new Scene.Title();
 			t_engine.scene_list[(int)UnitySetting.SceneIndex.InGame] = new Scene.InGame();
+			t_engine.scene_list[(int)UnitySetting.SceneIndex.Result] = new Scene.Result();
 
-			//ƒvƒŒƒCƒ„[B
-			t_onmemory.player = new Game.Player.Player();
+			//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã€‚
+			yield return new Execute.PlayerExecute().Boot();
 
-			//ƒ^ƒCƒgƒ‹‚ÖB
+			//ã‚¯ã‚¨ã‚¹ãƒˆãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã€‚
+			yield return new Execute.QuestPlayerExecute().Boot();
+
+			//ã‚¿ã‚¤ãƒˆãƒ«ã¸ã€‚
 			t_engine.scene.SetNextScene(t_engine.scene_list[(int)UnitySetting.SceneIndex.Title]);
 
 			this.endflag = true;

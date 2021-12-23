@@ -8,15 +8,19 @@ namespace UnitySetting
 	*/
 	public enum SceneIndex
 	{
-		/** ƒ^ƒCƒgƒ‹B
+		/** ã‚¿ã‚¤ãƒˆãƒ«ã€‚
 		*/
 		Title,
 
-		/** ƒCƒ“ƒQ[ƒ€B
+		/** ã‚¤ãƒ³ã‚²ãƒ¼ãƒ ã€‚
 		*/
 		InGame,
 
-		/** ‘”B
+		/** ãƒªã‚¶ãƒ«ãƒˆã€‚
+		*/
+		Result,
+
+		/** ç·æ•°ã€‚
 		*/
 		Max,
 	}

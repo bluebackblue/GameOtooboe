@@ -8,15 +8,15 @@ namespace UnitySetting
 	*/
 	public enum MaterialIndex
 	{
-		/** •s“§–¾B
+		/** ä¸é€æ˜ã€‚
 		*/
 		Opaque,
 
-		/** “§–¾B
+		/** é€æ˜ã€‚
 		*/
 		Transparent,
 
-		/** ‘”B
+		/** ç·æ•°ã€‚
 		*/
 		Max,
 	}

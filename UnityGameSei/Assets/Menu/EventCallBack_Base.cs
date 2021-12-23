@@ -10,7 +10,7 @@ namespace Menu
 	{
 		/** [Menu.EventCallBack_Base]Call
 
-			a_code : Ç¢ÇÎÇ¢ÇÎÅB
+			a_code : „ÅÑ„Çç„ÅÑ„Çç„ÄÇ
 
 		*/
 		void Call(int a_code);

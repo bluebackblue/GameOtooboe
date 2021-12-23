@@ -1,6 +1,6 @@
 
 
-/** @brief ƒu[ƒgB
+/** @brief ãƒ–ãƒ¼ãƒˆã€‚
 */
 
 
@@ -21,18 +21,18 @@ namespace Scene
 		[UnityEngine.RuntimeInitializeOnLoadMethod]
 		private static void Initialize()
 		{
-			//íœ‚ÉƒfƒtƒHƒ‹ƒg‚É–ß‚·B
+			//å‰Šé™¤æ™‚ã«ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã«æˆ»ã™ã€‚
 			BlueBack.UnityPlayerLoop.UnityPlayerLoop.SetDefaultPlayerLoopOnUnityDestroy();
 
 			UnityEngine.GameObject t_gameobject = new UnityEngine.GameObject("boot");
 			s_monobehaviour = t_gameobject.AddComponent<Boot_MonoBehaviour>();
 			UnityEngine.GameObject.DontDestroyOnLoad(t_gameobject);
 
-			//ƒGƒ“ƒWƒ“ŠÖ˜AB
+			//ã‚¨ãƒ³ã‚¸ãƒ³é–¢é€£ã€‚
 			Execute.Engine.CreateSingleton();
 			Execute.Engine.GetSingleton().append_list = new System.Collections.Generic.List<Execute.AppEnd_Bases>();
 
-			//ƒV[ƒ“ŠÇ—‰Šú‰»Bƒu[ƒgƒV[ƒ“ŠJnB
+			//ã‚·ãƒ¼ãƒ³ç®¡ç†åˆæœŸåŒ–ã€‚ãƒ–ãƒ¼ãƒˆã‚·ãƒ¼ãƒ³é–‹å§‹ã€‚
 			s_monobehaviour.StartCoroutine(new Execute.SceneExecute().Boot(new Scene.Boot()));
 		}
 
@@ -40,7 +40,7 @@ namespace Scene
 		*/
 		private void OnDisable()
 		{
-			//ƒGƒ“ƒWƒ“ŠÖ˜AB
+			//ã‚¨ãƒ³ã‚¸ãƒ³é–¢é€£ã€‚
 			Execute.Engine.DeleteSingleton();
 
 			#if(UNITY_EDITOR)

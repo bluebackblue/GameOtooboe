@@ -4,7 +4,7 @@
 */
 namespace Execute
 {
-	/** ƒGƒ“ƒWƒ“ŠÖ˜AB
+	/** ã‚¨ãƒ³ã‚¸ãƒ³é–¢é€£ã€‚
 	*/
 	public sealed class Engine
 	{
@@ -12,7 +12,7 @@ namespace Execute
 		*/
 		private static Engine s_instance = null;
 
-		/** [singleton]ì¬B
+		/** [singleton]ä½œæˆã€‚
 		*/
 		public static Engine CreateSingleton()
 		{
@@ -20,14 +20,14 @@ namespace Execute
 			return s_instance;
 		}
 
-		/** [singleton]æ“¾B
+		/** [singleton]å–å¾—ã€‚
 		*/
 		public static Engine GetSingleton()
 		{
 			return s_instance;
 		}
 
-		/** [singleton]íœB
+		/** [singleton]å‰Šé™¤ã€‚
 		*/
 		public static void DeleteSingleton()
 		{
@@ -39,7 +39,7 @@ namespace Execute
 		*/
 		public System.Collections.Generic.List<AppEnd_Bases> append_list;
 
-		/** ƒV[ƒ“ŠÇ—B
+		/** ã‚·ãƒ¼ãƒ³ç®¡ç†ã€‚
 		*/
 		public BlueBack.Scene.Scene scene;
 		public BlueBack.Scene.Scene_Base[] scene_list;
@@ -70,7 +70,7 @@ namespace Execute
 			this.mouse_fixedupdate = null;
 		}
 
-		/** [singleton]”jŠüB
+		/** [singleton]ç ´æ£„ã€‚
 		*/
 		private void Dispose()
 		{

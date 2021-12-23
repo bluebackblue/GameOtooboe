@@ -1,12 +1,12 @@
-﻿
 
-/** GameData.InGame
+
+/** GameData
 */
 namespace GameData
 {
-	/** Item
+	/** DataItem
 	*/
-	public struct Item
+	public struct DataItem
 	{
 		/** パス。
 		*/
@@ -21,3 +21,4 @@ namespace GameData
 		public System.Type type;
 	}
 }
+

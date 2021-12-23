@@ -4,7 +4,7 @@
 */
 namespace Scene
 {
-	/** ƒ^ƒCƒgƒ‹B
+	/** ã‚¿ã‚¤ãƒˆãƒ«ã€‚
 	*/
 	public sealed class Title : BlueBack.Scene.Scene_Base , Menu.EventCallBack_Base
 	{
@@ -18,7 +18,7 @@ namespace Scene
 
 		/** constructor
 
-			í’“ƒf[ƒ^‰Šú‰»B
+			å¸¸é§ãƒ‡ãƒ¼ã‚¿åˆæœŸåŒ–ã€‚
 
 		*/
 		public Title()
@@ -26,32 +26,32 @@ namespace Scene
 			this.menu = new Menu.Title(this);
 		}
 
-		/** [BlueBack.Scene.Scene_Base]ƒV[ƒ“–¼B
+		/** [BlueBack.Scene.Scene_Base]ã‚·ãƒ¼ãƒ³åã€‚
 		*/
 		public string GetSceneName()
 		{
 			return "Title";
 		}
 
-		/** [BlueBack.Scene.Scene_Base]‘OƒV[ƒ“BI—¹B‰‰ñB
+		/** [BlueBack.Scene.Scene_Base]å‰ã‚·ãƒ¼ãƒ³ã€‚çµ‚äº†ã€‚åˆå›ã€‚
 		*/
 		public void BeforeSceneEndFirst()
 		{
 		}
 
-		/** [BlueBack.Scene.Scene_Base]‘OƒV[ƒ“BI—¹B
+		/** [BlueBack.Scene.Scene_Base]å‰ã‚·ãƒ¼ãƒ³ã€‚çµ‚äº†ã€‚
 		*/
 		public void BeforeSceneEnd()
 		{
 		}
 
-		/** [BlueBack.Scene.Scene_Base]‘OƒV[ƒ“BI—¹Bƒ‰ƒXƒgB
+		/** [BlueBack.Scene.Scene_Base]å‰ã‚·ãƒ¼ãƒ³ã€‚çµ‚äº†ã€‚ãƒ©ã‚¹ãƒˆã€‚
 		*/
 		public void BeforeSceneEndLast()
 		{
 		}
 
-		/** [BlueBack.Scene.Scene_Base]ƒJƒŒƒ“ƒgƒV[ƒ“BŠJnB‰‰ñB
+		/** [BlueBack.Scene.Scene_Base]ã‚«ãƒ¬ãƒ³ãƒˆã‚·ãƒ¼ãƒ³ã€‚é–‹å§‹ã€‚åˆå›ã€‚
 		*/
 		public void CurrentSceneStartFirst()
 		{
@@ -59,10 +59,10 @@ namespace Scene
 			this.menu.Start();
 		}
 
-		/** [BlueBack.Scene.Scene_Base]ƒJƒŒƒ“ƒgƒV[ƒ“BŠJnB
+		/** [BlueBack.Scene.Scene_Base]ã‚«ãƒ¬ãƒ³ãƒˆã‚·ãƒ¼ãƒ³ã€‚é–‹å§‹ã€‚
 
-			a_is_sceneloadend	: ƒV[ƒ“‚Ì“Ç‚İ‚İ‚ªŠ®—¹‚µ‚½‚©‚Ç‚¤‚©B 
-			return == true		: CurrentSceneRunning‚Ö‚Ì‘JˆÚ‚ğ‹–‰ÂB
+			a_is_sceneloadend	: ã‚·ãƒ¼ãƒ³ã®èª­ã¿è¾¼ã¿ãŒå®Œäº†ã—ãŸã‹ã©ã†ã‹ã€‚ 
+			return == true		: CurrentSceneRunningã¸ã®é·ç§»ã‚’è¨±å¯ã€‚
 
 		*/
 		public bool CurrentSceneStart(bool a_is_sceneloadend)
@@ -70,9 +70,9 @@ namespace Scene
 			return true;
 		}
 
-		/** [BlueBack.Scene.Scene_Base]ƒJƒŒƒ“ƒgƒV[ƒ“BÀsB
+		/** [BlueBack.Scene.Scene_Base]ã‚«ãƒ¬ãƒ³ãƒˆã‚·ãƒ¼ãƒ³ã€‚å®Ÿè¡Œã€‚
 
-			return == true : CurrentSceneEndFirst‚Ö‚Ì‘JˆÚ‚ğ‹–‰ÂB
+			return == true : CurrentSceneEndFirstã¸ã®é·ç§»ã‚’è¨±å¯ã€‚
 
 		*/
 		public bool CurrentSceneRunning()
@@ -80,15 +80,15 @@ namespace Scene
 			return this.endflag;
 		}
 
-		/** [BlueBack.Scene.Scene_Base]ƒJƒŒƒ“ƒgƒV[ƒ“BI—¹B‰‰ñB
+		/** [BlueBack.Scene.Scene_Base]ã‚«ãƒ¬ãƒ³ãƒˆã‚·ãƒ¼ãƒ³ã€‚çµ‚äº†ã€‚åˆå›ã€‚
 		*/
 		public void CurrentSceneEndFirst()
 		{
 		}
 
-		/** [BlueBack.Scene.Scene_Base]ƒJƒŒƒ“ƒgƒV[ƒ“BI—¹B
+		/** [BlueBack.Scene.Scene_Base]ã‚«ãƒ¬ãƒ³ãƒˆã‚·ãƒ¼ãƒ³ã€‚çµ‚äº†ã€‚
 
-			return == true : ƒV[ƒ“‘JˆÚ‚ğ‹–‰ÂB
+			return == true : ã‚·ãƒ¼ãƒ³é·ç§»ã‚’è¨±å¯ã€‚
 
 		*/
 		public bool CurrentSceneEnd()
@@ -97,19 +97,19 @@ namespace Scene
 			return true;
 		}
 
-		/** [BlueBack.Scene.Scene_Base]XVB
+		/** [BlueBack.Scene.Scene_Base]æ›´æ–°ã€‚
 		*/
 		public void UnityUpdate()
 		{
 		}
 
-		/** [BlueBack.Scene.Scene_Base]XVB
+		/** [BlueBack.Scene.Scene_Base]æ›´æ–°ã€‚
 		*/
 		public void UnityLateUpdate()
 		{
 		}
 
-		/** [BlueBack.Scene.Scene_Base]XVB
+		/** [BlueBack.Scene.Scene_Base]æ›´æ–°ã€‚
 		*/
 		public void UnityFixedUpdate()
 		{
@@ -118,13 +118,19 @@ namespace Scene
 
 		/** [Menu.EventCallBack_Base]Call
 
-			a_code : ‚¢‚ë‚¢‚ëB
+			a_code : ã„ã‚ã„ã‚ã€‚
 
 		*/
 		public void Call(int a_code)
 		{
-			this.endflag = true;
+			//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã€‚æ“ä½œã€‚ãƒ­ãƒƒã‚¯ã€‚
 			this.menu.Lock();
+
+			//æœ€åˆã‹ã‚‰ã€‚
+			Game.OnMemory.GetSingleton().questplayer_dataindex = 1;
+
+			//ã‚¤ãƒ³ã‚²ãƒ¼ãƒ ã¸ã€‚
+			this.endflag = true;
 			Execute.Engine.GetSingleton().scene.SetNextScene(Execute.Engine.GetSingleton().scene_list[(int)UnitySetting.SceneIndex.InGame]);
 		}
 	}

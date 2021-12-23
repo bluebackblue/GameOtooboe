@@ -4,7 +4,7 @@
 */
 namespace GameData.InGame
 {
-	/** ÉfÅ[É^ä«óùÅB
+	/** „Éá„Éº„ÇøÁÆ°ÁêÜ„ÄÇ
 	*/
 	public static class Data
 	{
@@ -15,18 +15,19 @@ namespace GameData.InGame
 		/** s_list
 		*/
 		/*
-		public static Item[] s_list  = new Item[]{
-			new Item(){
+		public static DataItem[] s_list  = new DataItem[]{
+			new DataItem(){
 				path = PATH,
-				name = "opaque",
-				type = typeof(UnityEngine.Material),
+				name = "xxxx",
+				type = typeof(xxxx),
 			},
-			new Item(){
+			new DataItem(){
 				path = PATH,
-				name = "transparent",
-				type = typeof(UnityEngine.Material),
+				name = "xxxx",
+				type = typeof(xxxx),
 			}
 		};
 		*/
 	}
 }
+

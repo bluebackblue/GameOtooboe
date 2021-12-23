@@ -8,15 +8,20 @@ namespace UnitySetting
 	*/
 	public enum TextureIndex
 	{
-		/** ‚È‚µB
+		/** ãªã—ã€‚
 		*/
 		None,
 
-		/** StartButton
+		/** Title
 		*/
-		StartButton,
+		Title_StartButton,
 
-		/** ‘”B
+		/** InGame_Icon
+		*/
+		InGame_Icon_Sei,
+		InGame_Icon_Hu,
+
+		/** ç·æ•°ã€‚
 		*/
 		Max,
 	}

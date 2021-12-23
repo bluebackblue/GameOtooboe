@@ -41,7 +41,7 @@ namespace Game.Player
 			this.status = null;
 		}
 
-		/** ƒCƒ“ƒQ[ƒ€BŠJnB
+		/** ã‚¤ãƒ³ã‚²ãƒ¼ãƒ ã€‚é–‹å§‹ã€‚
 		*/
 		public void StartInGame()
 		{
@@ -49,7 +49,7 @@ namespace Game.Player
 			this.status.StartInGame();
 		}
 
-		/** ƒCƒ“ƒQ[ƒ€BI—¹B
+		/** ã‚¤ãƒ³ã‚²ãƒ¼ãƒ ã€‚çµ‚äº†ã€‚
 		*/
 		public void EndInGame()
 		{
@@ -68,6 +68,10 @@ namespace Game.Player
 		*/
 		public void UnityFixedUpdate()
 		{
+			/*
+			this.status.energy_l = UnityEngine.Mathf.Abs(UnityEngine.Mathf.Sin(UnityEngine.Time.time));
+			this.status.energy_r = UnityEngine.Mathf.Abs(UnityEngine.Mathf.Cos(UnityEngine.Time.time));
+			*/
 		}
 	}
 }

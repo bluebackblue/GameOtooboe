@@ -1,4 +1,4 @@
-﻿
+
 
 /** Game.Player
 */
@@ -14,8 +14,8 @@ namespace Game.Player
 
 		/** energy
 		*/
-		public int energy_l;
-		public int energy_r;
+		public float energy_l;
+		public float energy_r;
 
 		/** インゲーム。開始。
 		*/
@@ -25,8 +25,8 @@ namespace Game.Player
 			this.pos = new UnityEngine.Vector2(UnitySetting.Config.SCREEN_W * 0.5f,UnitySetting.Config.SCREEN_H * 0.7f);
 
 			//energy
-			this.energy_l = 0;
-			this.energy_r = 0;
+			this.energy_l = 0.0f;
+			this.energy_r = 0.0f;
 		}
 
 		/** インゲーム。終了。

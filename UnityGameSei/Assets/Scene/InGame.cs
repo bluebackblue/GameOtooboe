@@ -1,4 +1,4 @@
-﻿
+
 
 /** Scene
 */
@@ -11,10 +11,6 @@ namespace Scene
 		/** onmemory
 		*/
 		private Game.OnMemory onmemory;
-
-		/** time
-		*/
-		private int time;
 
 		/** constructor
 
@@ -66,13 +62,18 @@ namespace Scene
 		*/
 		public bool CurrentSceneStart(bool a_is_sceneloadend)
 		{
-			//onmemory
-			this.onmemory.player.StartInGame();
+			if(a_is_sceneloadend == true){
 
-			//time
-			this.time = 0;
+				//questplayer
+				this.onmemory.questplayer.Load(Game.OnMemory.GetSingleton().questplayer_dataindex);
 
-			return true;
+				//player
+				this.onmemory.player.StartInGame();
+
+				return true;
+			}
+
+			return false;
 		}
 
 		/** [BlueBack.Scene.Scene_Base]カレントシーン。実行。
@@ -82,14 +83,17 @@ namespace Scene
 		*/
 		public bool CurrentSceneRunning()
 		{
-			/* TODO:ゲームオーバー
-			this.time++;
-			if(this.time >= 100){
-				Execute.Engine t_engine = Execute.Engine.GetSingleton();
-				t_engine.scene.SetNextScene(t_engine.scene_list[(int)UnitySetting.SceneIndex.Title]);
-				return true;
+			#pragma warning disable 0162
+			switch(this.onmemory.questplayer.result){
+			case Game.QuestPlayer.QuestResult.Success:
+			case Game.QuestPlayer.QuestResult.Faild:
+				{
+					Execute.Engine t_engine = Execute.Engine.GetSingleton();
+					t_engine.scene.SetNextScene(t_engine.scene_list[(int)UnitySetting.SceneIndex.Title]);
+					return true;
+				}break;
 			}
-			*/
+			#pragma warning restore
 
 			return false;
 		}
@@ -130,6 +134,10 @@ namespace Scene
 		*/
 		public void UnityFixedUpdate()
 		{
+			//questplayer
+			this.onmemory.questplayer.UnityFixedUpdate();
+
+			//player
 			this.onmemory.player.UnityFixedUpdate();
 		}
 	}

@@ -12,10 +12,10 @@ namespace Execute
 		*/
 		public System.Collections.IEnumerator Boot(BlueBack.Scene.Scene_Base a_scene)
 		{
-			//ƒV[ƒ“ŠÇ—‰Šú‰»B
+			//ã‚·ãƒ¼ãƒ³ç®¡ç†åˆæœŸåŒ–ã€‚
 			Execute.Engine.GetSingleton().scene = new BlueBack.Scene.Scene();
 
-			//ƒu[ƒgƒV[ƒ“ŠJŽnB
+			//ãƒ–ãƒ¼ãƒˆã‚·ãƒ¼ãƒ³é–‹å§‹ã€‚
 			Execute.Engine.GetSingleton().scene.SetNextScene(a_scene);
 
 			yield break;

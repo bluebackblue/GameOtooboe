@@ -45,14 +45,19 @@ namespace Menu
 			this.lockflag = false;
 
 			//sprite_startbutton
-			this.sprite_startbutton = this.engine.gl.spritelist[0].CreateSprite((int)UnitySetting.MaterialIndex.Opaque,(int)UnitySetting.TextureIndex.StartButton,new UnityEngine.Color(1,1,1,1),(1280 - 256) / 2,(720 - 256) / 2,256,256);
-			this.engine.gl.spritelist[0].buffer[this.sprite_startbutton.index].visible = false;
-			#if(DEF_BLUEBACK_GL_DEBUGVIEW)
-			this.sprite_startbutton.SetDebugName("title_startbutton");
-			#endif
+			{
+				int t_w = 256;
+				int t_h = 256;
+				int t_x = (UnitySetting.Config.SCREEN_W - t_w) / 2;
+				int t_y = (UnitySetting.Config.SCREEN_H - t_h) / 2;
+				this.sprite_startbutton = this.engine.gl.spritelist[0].CreateSprite(false,(int)UnitySetting.MaterialIndex.Opaque,(int)UnitySetting.TextureIndex.Title_StartButton,new UnityEngine.Color(1,1,1,1),t_x,t_y,t_w,t_h,UnitySetting.Config.SCREEN_W,UnitySetting.Config.SCREEN_H);
+				#if(DEF_BLUEBACK_GL_DEBUGVIEW)
+				this.sprite_startbutton.SetDebugName("title_startbutton");
+				#endif
+			}
 		}
 
-		/** [Menu.Menu_Base]îjä¸ÅB
+		/** [Menu.Menu_Base]Á†¥Ê£Ñ„ÄÇ
 		*/
 		public void Dispose()
 		{
@@ -62,7 +67,7 @@ namespace Menu
 		*/
 		public void Start()
 		{
-			this.engine.gl.spritelist[0].buffer[this.sprite_startbutton.index].visible = true;
+			this.sprite_startbutton.spritelist.buffer[this.sprite_startbutton.index].visible = true;
 			this.lockflag = false;
 		}
 
@@ -70,7 +75,7 @@ namespace Menu
 		*/
 		public void End()
 		{
-			this.engine.gl.spritelist[0].buffer[this.sprite_startbutton.index].visible = false;
+			this.sprite_startbutton.spritelist.buffer[this.sprite_startbutton.index].visible = false;
 		}
 
 		/** [Menu.Menu_Base]Lock
@@ -80,24 +85,24 @@ namespace Menu
 			this.lockflag = true;
 		}
 
-		/** [Menu.Menu_Base]çXêVÅB
+		/** [Menu.Menu_Base]Êõ¥Êñ∞„ÄÇ
 		*/
 		public void UnityUpdate()
 		{
 		}
 
-		/** [Menu.Menu_Base]çXêVÅB
+		/** [Menu.Menu_Base]Êõ¥Êñ∞„ÄÇ
 		*/
 		public void UnityLateUpdate()
 		{
 		}
 
-		/** [Menu.Menu_Base]çXêVÅB
+		/** [Menu.Menu_Base]Êõ¥Êñ∞„ÄÇ
 		*/
 		public void UnityFixedUpdate()
 		{
 			if(this.lockflag == false){
-				if(this.engine.mouse_fixedupdate.left.down == true){
+				if(this.engine.mouse_fixedupdate.left.down == true){				
 					this.eventcallback.Call((int)Code.Success);
 				}
 			}

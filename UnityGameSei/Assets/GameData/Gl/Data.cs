@@ -4,7 +4,7 @@
 */
 namespace GameData.Gl
 {
-	/** ƒf[ƒ^ŠÇ—B
+	/** ãƒ‡ãƒ¼ã‚¿ç®¡ç†ã€‚
 	*/
 	public static class Data
 	{
@@ -14,13 +14,13 @@ namespace GameData.Gl
 
 		/** s_list
 		*/
-		public static Item[] s_list  = new Item[]{
-			new Item(){
+		public static DataItem[] s_list  = new DataItem[]{
+			new DataItem(){
 				path = PATH,
 				name = "opaque",
 				type = typeof(UnityEngine.Material),
 			},
-			new Item(){
+			new DataItem(){
 				path = PATH,
 				name = "transparent",
 				type = typeof(UnityEngine.Material),
@@ -28,3 +28,4 @@ namespace GameData.Gl
 		};
 	}
 }
+
