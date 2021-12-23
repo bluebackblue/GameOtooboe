@@ -47,40 +47,65 @@ MonoBehaviour:
   list:
   - command: 0
     value_int: 1
+    value_float: 0
     value_string: 
   - command: 1
     value_int: 5
+    value_float: 0
     value_string: "Quest_01 : \u9806\u756A\u3092\u899A\u3048\u3066\u306D"
   - command: 2
     value_int: 3
+    value_float: 0
     value_string: 
   - command: 3
     value_int: 0
+    value_float: 0
     value_string: 
   - command: 1
     value_int: 4
-    value_string: "\u8D64\u306F\u5DE6\u30AF\u30EA\u30C3\u30AF"
+    value_float: 0
+    value_string: "\u8D64 : \u5DE6\u30AF\u30EA\u30C3\u30AF"
   - command: 1
     value_int: 4
-    value_string: "\u7DD1\u306F\u53F3\u30AF\u30EA\u30C3\u30AF"
+    value_float: 0
+    value_string: "\u7DD1 : \u53F3\u30AF\u30EA\u30C3\u30AF"
   - command: 1
     value_int: 8
-    value_string: "\u958B\u59CB : \u30BF\u30A4\u30DF\u30F3\u30B0\u3088\u304F\u30AF\u30EA\u30C3\u30AF\u3057\u3066\u306D"
+    value_float: 0
+    value_string: "\u30BF\u30A4\u30DF\u30F3\u30B0\u3088\u304F\u30AF\u30EA\u30C3\u30AF\u3057\u3066\u306D"
+  - command: 1
+    value_int: 2
+    value_float: 0
+    value_string: "\u958B\u59CB"
   - command: 2
     value_int: 3
+    value_float: 0
     value_string: 
   - command: 4
     value_int: 0
+    value_float: 0
     value_string: 
   - command: 5
     value_int: 0
+    value_float: 0
+    value_string: 
+  - command: 7
+    value_int: 0
+    value_float: 150
+    value_string: 
+  - command: 8
+    value_int: 0
+    value_float: 1
     value_string: 
   - command: 6
     value_int: 1
+    value_float: 0
     value_string: 
   - command: 6
     value_int: 2
+    value_float: 0
     value_string: 
   - command: 6
     value_int: 1
+    value_float: 0
     value_string: 

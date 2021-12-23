@@ -54,6 +54,7 @@ namespace Execute
 			//debug_text
 			#if(UNITY_EDITOR)
 			this.debug_text = UnityEngine.GameObject.Find("Debug_Text").GetComponent<UnityEngine.UI.Text>();
+			this.debug_text.enabled = true;
 			#endif
 
 			//message
@@ -76,9 +77,6 @@ namespace Execute
 			//解析。
 			GameData.QuestPlayer.QuestItem[] t_list = t_data_monobehaviour.list;
 			{
-				//enemy_waittime
-				this.onmemory.enemy_waittime = 30;
-
 				//enemy_list
 				this.onmemory.enemy_list.Clear();
 				for(int ii=0;ii<t_list.Length;ii++){
@@ -87,6 +85,14 @@ namespace Execute
 						{
 							this.onmemory.enemy_list.Add(new Game.Enemy.Enemy(ii,this.onmemory.enemy_list.Count,t_list[ii].value_int));
 						}break;
+					case GameData.QuestPlayer.CommandType.MoveSpeed:
+						{
+							this.onmemory.param.movespeed = t_list[ii].value_float;
+						}break;
+					case GameData.QuestPlayer.CommandType.PopInterval:
+						{
+							this.onmemory.param.popinterval = t_list[ii].value_float;
+						}break;
 					}
 				}
 			}
@@ -94,13 +100,8 @@ namespace Execute
 			//phasetype
 			this.onmemory.param.phasetype = Game.Param.PhaseType.None;
 
-			//gametime
-			this.onmemory.param.gametime = 0;
-
-			//speed
-			this.onmemory.param.movespeed = 5.0f;
-
-
+			//gametime_sec
+			this.onmemory.param.gametime_sec = 0.0f;
 
 			return t_list;
 		}
@@ -135,18 +136,18 @@ namespace Execute
 					//観覧モード。
 
 					#if(UNITY_EDITOR)
-					this.debug_text.text = t_debugtext_prefix + " : " + this.onmemory.param.gametime.ToString();
+					this.debug_text.text = t_debugtext_prefix + " : " + this.onmemory.param.gametime_sec.ToString();
 					#endif
 
 					if(a_first == true){
 						this.onmemory.param.phasetype = Game.Param.PhaseType.View;
-						this.onmemory.param.gametime = 0;
+						this.onmemory.param.gametime_sec = 0.0f;
 
 						foreach(Game.Enemy.Enemy t_enemy in this.onmemory.enemy_list){
 							t_enemy.Reset();
 						}
 					}else{
-						this.onmemory.param.gametime++;
+						this.onmemory.param.gametime_sec += UnityEngine.Time.fixedDeltaTime;
 
 						//終了待ち。
 						bool t_fix = true;
@@ -166,18 +167,18 @@ namespace Execute
 					//プレイモード。
 
 					#if(UNITY_EDITOR)
-					this.debug_text.text = t_debugtext_prefix + " : " + this.onmemory.param.gametime.ToString();
+					this.debug_text.text = t_debugtext_prefix + " : " + this.onmemory.param.gametime_sec.ToString();
 					#endif
 
 					if(a_first == true){
 						this.onmemory.param.phasetype = Game.Param.PhaseType.Play;
-						this.onmemory.param.gametime = 0;
+						this.onmemory.param.gametime_sec = 0.0f;
 
 						foreach(Game.Enemy.Enemy t_enemy in this.onmemory.enemy_list){
 							t_enemy.Reset();
 						}
 					}else{
-						this.onmemory.param.gametime++;
+						this.onmemory.param.gametime_sec += UnityEngine.Time.fixedDeltaTime;
 
 						//終了待ち。
 						bool t_fix = true;
@@ -286,7 +287,7 @@ namespace Execute
 					//リザルトへ。
 
 					#if(UNITY_EDITOR)
-					this.debug_text.text = t_debugtext_prefix + " : " + this.onmemory.param.gametime.ToString();
+					this.debug_text.text = t_debugtext_prefix;
 					#endif
 
 					//TODO:失敗した場合。

@@ -35,6 +35,14 @@ namespace GameData.QuestPlayer
 		/** Data
 		*/
 		Data,
+
+		/** MoveSpeed
+		*/
+		MoveSpeed,
+
+		/** PopInterval
+		*/
+		PopInterval,
 	}
 }
 

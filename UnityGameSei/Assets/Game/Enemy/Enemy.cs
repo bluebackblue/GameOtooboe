@@ -109,7 +109,7 @@ namespace Game.Enemy
 					{
 						//表示待ち。
 
-						if(t_onmemory.param.gametime >= this.index * t_onmemory.enemy_waittime){
+						if(t_onmemory.param.gametime_sec >= this.index * t_onmemory.param.popinterval){
 							this.mode = Mode.View;
 						}
 					}break;
@@ -117,7 +117,7 @@ namespace Game.Enemy
 					{
 						//表示。
 
-						int t_time = t_onmemory.param.gametime - this.index * t_onmemory.enemy_waittime;
+						float t_time = t_onmemory.param.gametime_sec - this.index * t_onmemory.param.popinterval;
 
 						int t_y_offset = 111;
 						int t_w = 64;
@@ -143,7 +143,7 @@ namespace Game.Enemy
 					{
 						//表示待ち。
 
-						if(t_onmemory.param.gametime >= this.index * t_onmemory.enemy_waittime){
+						if(t_onmemory.param.gametime_sec >= this.index * t_onmemory.param.popinterval){
 							this.mode = Mode.View;
 						}
 					}break;
@@ -151,7 +151,7 @@ namespace Game.Enemy
 					{
 						//表示。
 
-						int t_time = t_onmemory.param.gametime - this.index * t_onmemory.enemy_waittime;
+						float t_time = t_onmemory.param.gametime_sec - this.index * t_onmemory.param.popinterval;
 
 						int t_y_offset = 111;
 						int t_w = 64;

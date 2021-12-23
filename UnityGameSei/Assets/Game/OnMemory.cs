@@ -53,7 +53,6 @@ namespace Game
 		/** enemy_list
 		*/
 		public System.Collections.Generic.List<Game.Enemy.Enemy> enemy_list;
-		public int enemy_waittime;
 
 		/** param
 		*/
@@ -74,7 +73,6 @@ namespace Game
 
 			//enemy_list
 			this.enemy_list = null;
-			this.enemy_waittime = 0;
 
 			//param
 			this.param = null;

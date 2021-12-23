@@ -42,6 +42,10 @@ namespace GameData.QuestPlayer.Editor
 			*/
 			public int value_int;
 
+			/** value_float
+			*/
+			public float value_float;
+
 			/** value_string
 			*/
 			public string value_string;
@@ -81,6 +85,7 @@ namespace GameData.QuestPlayer.Editor
 						QuestItem t_questitem;
 						{
 							t_questitem.value_int = t_sheet[ii].value_int;
+							t_questitem.value_float = t_sheet[ii].value_float;
 							t_questitem.value_string = t_sheet[ii].value_string;
 							t_questitem.command = System.Enum.Parse<GameData.QuestPlayer.CommandType>(t_sheet[ii].param);
 						}

@@ -8,9 +8,9 @@ namespace Game.Param
 	*/
 	public class Param
 	{
-		/** gametime
+		/** gametime_sec
 		*/
-		public int gametime;
+		public float gametime_sec;
 
 		/** pahgetype
 		*/
@@ -19,6 +19,10 @@ namespace Game.Param
 		/** movespeed
 		*/
 		public float movespeed;
+
+		/** popinterval
+		*/
+		public float popinterval;
 	}
 }
 

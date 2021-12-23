@@ -17,6 +17,10 @@ namespace GameData.QuestPlayer
 		*/
 		public int value_int;
 
+		/** value_float
+		*/
+		public float value_float;
+
 		/** value_string
 		*/
 		public string value_string;

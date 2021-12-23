@@ -47,34 +47,77 @@ MonoBehaviour:
   list:
   - command: 0
     value_int: 1
+    value_float: 0
     value_string: 
   - command: 1
     value_int: 2
+    value_float: 0
     value_string: Quest_02
   - command: 2
     value_int: 3
+    value_float: 0
     value_string: 
   - command: 3
     value_int: 0
+    value_float: 0
     value_string: 
   - command: 1
     value_int: 2
+    value_float: 0
     value_string: "\u958B\u59CB"
   - command: 2
     value_int: 3
+    value_float: 0
     value_string: 
   - command: 4
     value_int: 0
+    value_float: 0
     value_string: 
   - command: 5
     value_int: 0
+    value_float: 0
+    value_string: 
+  - command: 7
+    value_int: 0
+    value_float: 500
+    value_string: 
+  - command: 8
+    value_int: 0
+    value_float: 0.3
     value_string: 
   - command: 6
     value_int: 1
+    value_float: 0
+    value_string: 
+  - command: 6
+    value_int: 1
+    value_float: 0
+    value_string: 
+  - command: 6
+    value_int: 1
+    value_float: 0
+    value_string: 
+  - command: 6
+    value_int: 1
+    value_float: 0
     value_string: 
   - command: 6
     value_int: 2
+    value_float: 0
+    value_string: 
+  - command: 6
+    value_int: 2
+    value_float: 0
+    value_string: 
+  - command: 6
+    value_int: 2
+    value_float: 0
+    value_string: 
+  - command: 6
+    value_int: 2
+    value_float: 0
     value_string: 
   - command: 6
     value_int: 1
+    value_float: 0
     value_string: 

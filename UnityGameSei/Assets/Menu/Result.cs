@@ -16,7 +16,12 @@ namespace Menu
 		*/
 		public enum Code
 		{
+			/** 次。
+			*/
 			Next,
+
+			/** タイトル。
+			*/
 			Title,
 		}
 
@@ -28,9 +33,9 @@ namespace Menu
 		*/
 		public bool lockflag;
 
-		/** sprite_startbutton
+		/** message_text
 		*/
-		//public BlueBack.Gl.SpriteIndex sprite_startbutton;
+		public UnityEngine.UI.Text message_text;
 
 		/** all_clear
 		*/
@@ -48,22 +53,6 @@ namespace Menu
 
 			//lockflag
 			this.lockflag = false;
-
-			/*
-			//sprite_startbutton
-			{
-				int t_w = 256;
-				int t_h = 256;
-				int t_x = (UnitySetting.Config.SCREEN_W - t_w) / 2;
-				int t_y = (UnitySetting.Config.SCREEN_H - t_h) / 2;
-				this.sprite_startbutton = this.engine.gl.spritelist[0].CreateSprite(false,(int)UnitySetting.MaterialIndex.Opaque,(int)UnitySetting.TextureIndex.Title_StartButton,new UnityEngine.Color(1,1,1,1),t_x,t_y,t_w,t_h,UnitySetting.Config.SCREEN_W,UnitySetting.Config.SCREEN_H);
-				#if(DEF_BLUEBACK_GL_DEBUGVIEW)
-				this.sprite_startbutton.SetDebugName("title_startbutton");
-				#endif
-			}
-			*/
-
-
 		}
 
 		/** [Menu.Menu_Base]破棄。
@@ -76,11 +65,12 @@ namespace Menu
 		*/
 		public void Start()
 		{
-			/*
-			this.sprite_startbutton.spritelist.buffer[this.sprite_startbutton.index].visible = true;
-			*/
-
+			//lockflag
 			this.lockflag = false;
+
+			//message_text
+			this.message_text = UnityEngine.GameObject.Find("Message_Text").GetComponent<UnityEngine.UI.Text>();
+			this.message_text.enabled = true;
 
 			//TODO:GameData.QuestPlayer.Dataから次が存在するかチェック。
 			if(Game.OnMemory.GetSingleton().questplayer_dataindex >= 2){
@@ -90,9 +80,11 @@ namespace Menu
 			}
 
 			if(this.all_clear == true){
-				UnityEngine.GameObject.Find("Result_Text").GetComponent<UnityEngine.UI.Text>().text = "THANK YOU FOR PLAYING";
+				this.message_text.fontSize = 60;
+				this.message_text.text = "THANK YOU FOR PLAYING";
 			}else{
-				UnityEngine.GameObject.Find("Result_Text").GetComponent<UnityEngine.UI.Text>().text = "正解";
+				this.message_text.fontSize = 120;
+				this.message_text.text = "正解";
 			}
 		}
 
@@ -100,9 +92,7 @@ namespace Menu
 		*/
 		public void End()
 		{
-			/*
-			this.sprite_startbutton.spritelist.buffer[this.sprite_startbutton.index].visible = false;
-			*/
+			this.message_text.enabled = false;
 		}
 
 		/** [Menu.Menu_Base]Lock
