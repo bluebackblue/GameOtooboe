@@ -214,6 +214,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2332432885524616970, guid: 37c2706a00a5634459d4005593852e58, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2332432886168392445, guid: 37c2706a00a5634459d4005593852e58, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2332432886231326168, guid: 37c2706a00a5634459d4005593852e58, type: 3}
       propertyPath: m_SizeDelta.x
       value: 256
@@ -233,6 +241,10 @@ PrefabInstance:
     - target: {fileID: 2332432886231326171, guid: 37c2706a00a5634459d4005593852e58, type: 3}
       propertyPath: m_Text
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2332432886231326171, guid: 37c2706a00a5634459d4005593852e58, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2332432886231326171, guid: 37c2706a00a5634459d4005593852e58, type: 3}
       propertyPath: m_FontData.m_MaxSize

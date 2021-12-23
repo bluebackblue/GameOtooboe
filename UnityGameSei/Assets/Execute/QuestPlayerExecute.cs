@@ -59,12 +59,12 @@ namespace Execute
 			//message
 			this.message_text = UnityEngine.GameObject.Find("Message_Text").GetComponent<UnityEngine.UI.Text>();
 			this.message_recttransform = this.message_text.gameObject.GetComponent<UnityEngine.RectTransform>();
-			this.message_text.gameObject.SetActive(false);
+			this.message_text.enabled = false;
 
 			//countdown
 			this.countdown_text = UnityEngine.GameObject.Find("CountDown_Text").GetComponent<UnityEngine.UI.Text>();
 			this.countdown_recttransform = this.countdown_text.gameObject.GetComponent<UnityEngine.RectTransform>();
-			this.countdown_text.gameObject.SetActive(false);
+			this.countdown_text.enabled = false;
 
 			string t_path = "QuestPlayer/Quest_" + a_dataindex.ToString("D2");
 			#if(UNITY_EDITOR)
@@ -214,7 +214,7 @@ namespace Execute
 					if(a_first == true){
 						this.temp_sec = a_item.value_int - 0.001f;
 						this.countdown_text.text = a_item.value_string;
-						this.countdown_text.gameObject.SetActive(true);
+						this.countdown_text.enabled = true;
 					}else{
 						this.temp_sec = UnityEngine.Mathf.Max(0,this.temp_sec - UnityEngine.Time.fixedDeltaTime);
 
@@ -233,7 +233,7 @@ namespace Execute
 					this.countdown_text.text = (1 + (int)this.temp_sec).ToString();
 
 					if(this.temp_sec <= 0.0f){
-						this.countdown_text.gameObject.SetActive(false);
+						this.countdown_text.enabled = false;
 						a_questplayer.SetNextIndex(a_index + 1);
 						return;
 					}
@@ -243,7 +243,7 @@ namespace Execute
 					if(a_first == true){
 						this.temp_sec = 0.0f;
 						this.message_text.text = a_item.value_string;
-						this.message_text.gameObject.SetActive(true);
+						this.message_text.enabled = true;
 					}else{
 						this.temp_sec += UnityEngine.Time.fixedDeltaTime;
 					}
@@ -258,7 +258,7 @@ namespace Execute
 					int t_x;
 					int t_y = (int)(UnitySetting.Config.SCREEN_H * 0.6f);
 
-					float t_section_max = 2.0f;
+					float t_section_max = a_item.value_int;
 					float t_section = t_section_max / 5;
 
 					if(this.temp_sec <= t_section * 1){
@@ -276,7 +276,7 @@ namespace Execute
 					
 					this.message_recttransform.localPosition = new UnityEngine.Vector3(t_x - UnitySetting.Config.SCREEN_W / 2,UnitySetting.Config.SCREEN_H / 2 - t_y,0);
 					if(this.temp_sec >= t_section_max){
-						this.message_text.gameObject.SetActive(false);
+						this.message_text.enabled = false;
 						a_questplayer.SetNextIndex(a_index + 1);
 						return;
 					}

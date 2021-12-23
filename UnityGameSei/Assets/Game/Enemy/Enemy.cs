@@ -8,10 +8,6 @@ namespace Game.Enemy
 	*/
 	public sealed class Enemy : System.IDisposable
 	{
-		/** データ位置。TODO:いらんかも。
-		*/
-		public int rawindex;
-
 		/** 出現順序。
 		*/
 		public int index;
@@ -50,7 +46,6 @@ namespace Game.Enemy
 		*/
 		public Enemy(int a_rawindex,int a_index,int a_position)
 		{
-			this.rawindex = a_rawindex;
 			this.index = a_index;
 			this.position = a_position;
 
