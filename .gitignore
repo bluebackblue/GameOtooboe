@@ -13,3 +13,5 @@ ProjectVersion.txt
 *.csproj
 *.sln
 *.dwlt
+*.ttf
+*.ttf.meta

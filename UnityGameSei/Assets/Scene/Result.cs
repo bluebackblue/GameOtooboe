@@ -56,7 +56,6 @@ namespace Scene
 		public void CurrentSceneStartFirst()
 		{
 			this.endflag = false;
-			this.menu.Start();
 		}
 
 		/** [BlueBack.Scene.Scene_Base]カレントシーン。開始。
@@ -67,7 +66,11 @@ namespace Scene
 		*/
 		public bool CurrentSceneStart(bool a_is_sceneloadend)
 		{
-			return true;
+			if(a_is_sceneloadend == true){
+				this.menu.Start();
+				return true;
+			}
+			return false;
 		}
 
 		/** [BlueBack.Scene.Scene_Base]カレントシーン。実行。

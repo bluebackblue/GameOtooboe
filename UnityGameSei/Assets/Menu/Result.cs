@@ -71,6 +71,7 @@ namespace Menu
 			//message_text
 			this.message_text = UnityEngine.GameObject.Find("Message_Text").GetComponent<UnityEngine.UI.Text>();
 			this.message_text.enabled = true;
+			this.message_text.font = Execute.Engine.GetSingleton().font;
 
 			//TODO:GameData.QuestPlayer.Dataから次が存在するかチェック。
 			if(Game.OnMemory.GetSingleton().questplayer_dataindex >= 2){

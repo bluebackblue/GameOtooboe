@@ -39,6 +39,10 @@ namespace Execute
 			s_instance = null;
 		}
 
+		/** font
+		*/
+		public UnityEngine.Font font;
+
 		/** append_list
 		*/
 		public System.Collections.Generic.List<AppEnd_Bases> append_list;

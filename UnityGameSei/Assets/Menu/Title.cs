@@ -58,9 +58,10 @@ namespace Menu
 		{
 			this.lockflag = false;
 
-			this.message_text = UnityEngine.GameObject.Find("Text_Message").GetComponent<UnityEngine.UI.Text>();
+			this.message_text = UnityEngine.GameObject.Find("Message_Text").GetComponent<UnityEngine.UI.Text>();
 			this.message_text.text = "Click";
 			this.message_text.enabled = true;
+			this.message_text.font = Execute.Engine.GetSingleton().font;
 		}
 
 		/** [Menu.Menu_Base]End

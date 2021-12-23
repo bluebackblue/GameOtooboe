@@ -114,6 +114,9 @@ namespace Scene
 			Game.OnMemory.CreateSingleton();
 			Game.OnMemory t_onmemory = Game.OnMemory.GetSingleton();
 
+			//フォント。
+			yield return new Execute.FontExecute().Boot();
+
 			//パラメータ。
 			yield return new Execute.ParamExecute().Boot();
 

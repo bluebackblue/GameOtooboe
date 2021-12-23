@@ -232,7 +232,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7935883552231624516, guid: e255fd6392d17ac47bfaf1207d58742a, type: 3}
       propertyPath: m_Name
-      value: Text_Message
+      value: Message_Text
       objectReference: {fileID: 0}
     - target: {fileID: 7935883552231624517, guid: e255fd6392d17ac47bfaf1207d58742a, type: 3}
       propertyPath: m_AnchoredPosition.x

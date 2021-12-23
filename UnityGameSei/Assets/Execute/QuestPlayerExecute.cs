@@ -55,17 +55,20 @@ namespace Execute
 			#if(UNITY_EDITOR)
 			this.debug_text = UnityEngine.GameObject.Find("Debug_Text").GetComponent<UnityEngine.UI.Text>();
 			this.debug_text.enabled = true;
+			this.debug_text.font = Execute.Engine.GetSingleton().font;
 			#endif
 
 			//message
 			this.message_text = UnityEngine.GameObject.Find("Message_Text").GetComponent<UnityEngine.UI.Text>();
 			this.message_recttransform = this.message_text.gameObject.GetComponent<UnityEngine.RectTransform>();
 			this.message_text.enabled = false;
+			this.message_text.font = Execute.Engine.GetSingleton().font;
 
 			//countdown
 			this.countdown_text = UnityEngine.GameObject.Find("CountDown_Text").GetComponent<UnityEngine.UI.Text>();
 			this.countdown_recttransform = this.countdown_text.gameObject.GetComponent<UnityEngine.RectTransform>();
 			this.countdown_text.enabled = false;
+			this.countdown_text.font = Execute.Engine.GetSingleton().font;
 
 			string t_path = "QuestPlayer/Quest_" + a_dataindex.ToString("D2");
 			#if(UNITY_EDITOR)
