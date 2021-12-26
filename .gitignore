@@ -15,3 +15,5 @@ ProjectVersion.txt
 *.dwlt
 *.ttf
 *.ttf.meta
+*.mp3
+*.mp3.meta
