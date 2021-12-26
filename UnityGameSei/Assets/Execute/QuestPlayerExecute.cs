@@ -82,19 +82,25 @@ namespace Execute
 			{
 				//enemy_list
 				this.onmemory.enemy_list.Clear();
+
+				//ダミー。
+				for(int ii=0;ii<10;ii++){
+					this.onmemory.enemy_list.Add(new Game.Enemy.Enemy(this.onmemory.enemy_list.Count,-1));
+				}
+
 				for(int ii=0;ii<t_list.Length;ii++){
 					switch(t_list[ii].command){
 					case GameData.QuestPlayer.CommandType.Data:
 						{
-							this.onmemory.enemy_list.Add(new Game.Enemy.Enemy(ii,this.onmemory.enemy_list.Count,t_list[ii].value_int));
+							this.onmemory.enemy_list.Add(new Game.Enemy.Enemy(this.onmemory.enemy_list.Count,t_list[ii].value_int));
 						}break;
 					case GameData.QuestPlayer.CommandType.MoveSpeed:
 						{
 							this.onmemory.param.movespeed = t_list[ii].value_float;
 						}break;
-					case GameData.QuestPlayer.CommandType.PopInterval:
+					case GameData.QuestPlayer.CommandType.Space:
 						{
-							this.onmemory.param.popinterval = t_list[ii].value_float;
+							this.onmemory.param.space = t_list[ii].value_float;
 						}break;
 					}
 				}
@@ -175,6 +181,15 @@ namespace Execute
 					#if(UNITY_EDITOR)
 					this.debug_text.text = t_debugtext_prefix + " : " + this.onmemory.param.gametime_sec.ToString();
 					#endif
+
+					//ＳＥ再生。
+					{
+						if(Execute.Engine.GetSingleton().mouse_fixedupdate.left.down == true){
+							Execute.Engine.GetSingleton().audio_se.PlayOnce(1,1.0f);
+						}else if(Execute.Engine.GetSingleton().mouse_fixedupdate.right.down == true){
+							Execute.Engine.GetSingleton().audio_se.PlayOnce(2,1.0f);
+						}
+					}
 
 					if(a_first == true){
 						this.onmemory.param.phasetype = Game.Param.PhaseType.Play;

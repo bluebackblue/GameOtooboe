@@ -104,12 +104,14 @@ namespace Scene
 		*/
 		public void UnityUpdate()
 		{
+			this.menu.UnityUpdate();
 		}
 
 		/** [BlueBack.Scene.Scene_Base]更新。
 		*/
 		public void UnityLateUpdate()
 		{
+			this.menu.UnityLateUpdate();
 		}
 
 		/** [BlueBack.Scene.Scene_Base]更新。

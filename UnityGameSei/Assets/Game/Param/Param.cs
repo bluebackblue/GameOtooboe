@@ -20,9 +20,9 @@ namespace Game.Param
 		*/
 		public float movespeed;
 
-		/** popinterval
+		/** space
 		*/
-		public float popinterval;
+		public float space;
 
 		/** life
 		*/

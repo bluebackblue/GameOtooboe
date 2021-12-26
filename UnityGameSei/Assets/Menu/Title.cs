@@ -31,6 +31,15 @@ namespace Menu
 		*/
 		public UnityEngine.UI.Text message_text;
 
+		/** time
+		*/
+		public float time;
+		public int time_count;
+
+		/** volume_sprite
+		*/
+		public BlueBack.Gl.SpriteIndex[] volume_sprite;
+
 		/** constructor
 		*/
 		public Title(EventCallBack_Base a_eventcallback)
@@ -43,6 +52,30 @@ namespace Menu
 
 			//lockflag
 			this.lockflag = false;
+
+			//time
+			this.time = 0.0f;
+			this.time_count = 0;
+
+			//volume
+			{
+				this.volume_sprite = new BlueBack.Gl.SpriteIndex[5];
+				for(int ii=0;ii<this.volume_sprite.Length;ii++){
+					int t_w = 30;
+					int t_h = 40;
+					int t_x = 16 + ii * (t_w + 16);
+					int t_y = UnitySetting.Config.SCREEN_H - t_h - 16;
+
+					UnityEngine.Color t_color;
+					if(ii == 0){
+						t_color = new UnityEngine.Color(1.0f,0.3f,0.3f,1.0f);
+					}else{
+						t_color = new UnityEngine.Color(0.3f,0.3f,1.0f,1.0f);
+					}
+
+					this.volume_sprite[ii] = Execute.Engine.GetSingleton().gl.spritelist[0].CreateSprite(false,(int)UnitySetting.MaterialIndex.Opaque,(int)UnitySetting.TextureIndex.None,t_color,t_x,t_y,t_w,t_h,UnitySetting.Config.SCREEN_W,UnitySetting.Config.SCREEN_H);
+				}
+			}
 
 		}
 
@@ -68,6 +101,9 @@ namespace Menu
 		*/
 		public void End()
 		{
+			for(int ii=0;ii<this.volume_sprite.Length;ii++){
+				this.volume_sprite[ii].spritelist.buffer[this.volume_sprite[ii].index].visible = false;
+			}
 		}
 
 		/** [Menu.Menu_Base]Lock
@@ -81,6 +117,21 @@ namespace Menu
 		*/
 		public void UnityUpdate()
 		{
+			if(this.lockflag == false){
+				if(UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.UpArrow) == true){
+					Execute.AudioExecute.SetSeVolume(Execute.Engine.GetSingleton().audio_se_volume + 1);
+				}else if(UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.DownArrow) == true){
+					Execute.AudioExecute.SetSeVolume(Execute.Engine.GetSingleton().audio_se_volume - 1);
+				}
+			}
+
+			for(int ii=0;ii<this.volume_sprite.Length;ii++){
+				if(ii <= Execute.Engine.GetSingleton().audio_se_volume){
+					this.volume_sprite[ii].spritelist.buffer[this.volume_sprite[ii].index].visible = true;
+				}else{
+					this.volume_sprite[ii].spritelist.buffer[this.volume_sprite[ii].index].visible = false;
+				}
+			}
 		}
 
 		/** [Menu.Menu_Base]更新。
@@ -101,6 +152,17 @@ namespace Menu
 					}
 				}else{
 					this.message_text.color = new UnityEngine.Color(1.0f,1.0f,1.0f,1.0f);
+				}
+
+				this.time += UnityEngine.Time.fixedDeltaTime;
+				if(this.time >= 0.6f){
+					this.time -= 0.6f;
+					this.time_count = (this.time_count + 1) % 4;
+					if(this.time_count == 1){
+						Execute.Engine.GetSingleton().audio_se.PlayOnce(1,1.0f);
+					}else{
+						Execute.Engine.GetSingleton().audio_se.PlayOnce(2,1.0f);
+					}
 				}
 			}
 		}

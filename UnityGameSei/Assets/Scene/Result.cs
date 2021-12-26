@@ -125,12 +125,17 @@ namespace Scene
 		{
 			//hud
 			this.onmemory.hud.UnityUpdate();
+
+			//menu
+			this.menu.UnityUpdate();
 		}
 
 		/** [BlueBack.Scene.Scene_Base]更新。
 		*/
 		public void UnityLateUpdate()
 		{
+			//menu
+			this.menu.UnityLateUpdate();
 		}
 
 		/** [BlueBack.Scene.Scene_Base]更新。

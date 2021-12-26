@@ -8,7 +8,7 @@ namespace Game.Enemy
 	*/
 	public sealed class Enemy : System.IDisposable
 	{
-		/** 出現順序。
+		/** インデックス。
 		*/
 		public int index;
 
@@ -20,6 +20,10 @@ namespace Game.Enemy
 		*/
 		public BlueBack.Gl.SpriteIndex sprite;
 		public int sprite_x;
+
+		/** width
+		*/
+		public int width;
 
 		/** height
 		*/
@@ -71,15 +75,24 @@ namespace Game.Enemy
 		*/
 		public Result result;
 
+		/** seflag
+		*/
+		public bool seflag;
+
 		/** constructor
 		*/
-		public Enemy(int a_rawindex,int a_index,int a_position)
+		public Enemy(int a_index,int a_position)
 		{
 			this.index = a_index;
 			this.position = a_position;
 
 			UnityEngine.Color t_color;
 			switch(this.position){
+			case -1:
+				{
+					t_color = new UnityEngine.Color(0,0,0,0);
+					this.sprite_x = UnitySetting.Config.SCREEN_W / 2 - 100;
+				}break;
 			case 1:
 				{
 					t_color = new UnityEngine.Color(1,0,0,1);
@@ -107,6 +120,7 @@ namespace Game.Enemy
 			this.sprite.SetDebugName("sprite_enemy_" + a_index.ToString("D2"));
 			#endif
 
+			this.width = 64;
 			this.height = 128;
 		}
 
@@ -123,6 +137,7 @@ namespace Game.Enemy
 			this.mode = Game.Enemy.Enemy.Mode.In;
 			this.sprite.spritelist.buffer[this.sprite.index].visible = false;
 			this.result = Result.None;
+			this.seflag = true;
 		}
 
 		/** [System.IDisposable]Dispose
@@ -142,12 +157,20 @@ namespace Game.Enemy
 			Game.OnMemory t_onmemory = Game.OnMemory.GetSingleton();
 
 			if(t_onmemory.param.phasetype == Param.PhaseType.View){
+
+				int t_space = 256;
+
+				int t_w = this.width;
+				int t_h = this.height;
+				int t_x = this.sprite_x - t_w / 2;
+				int t_y = (int)((t_onmemory.hud.bar_y - this.height / 2) + (this.index * (this.height + t_onmemory.param.space) + UnitySetting.Config.SCREEN_H * 0.5f - t_onmemory.param.gametime_sec * t_onmemory.param.movespeed));
+
 				switch(this.mode){
 				case Mode.In:
 					{
 						//表示待ち。
 
-						if(t_onmemory.param.gametime_sec >= this.index * t_onmemory.param.popinterval){
+						if(t_y <= UnitySetting.Config.SCREEN_H + t_space){
 							this.mode = Mode.View;
 						}
 					}break;
@@ -155,40 +178,73 @@ namespace Game.Enemy
 					{
 						//表示。
 
-						float t_time = t_onmemory.param.gametime_sec - this.index * t_onmemory.param.popinterval;
+						if(this.position >= 0){
+							this.sprite.spritelist.buffer[this.sprite.index].visible = true;
+						}
 
-						int t_y_offset = 256;
-						int t_w = 64;
-						int t_h = this.height;
-						int t_x = this.sprite_x - t_w / 2;
-						int t_y = UnitySetting.Config.SCREEN_H + t_y_offset - (int)(t_time * t_onmemory.param.movespeed);
-
-						this.sprite.spritelist.buffer[this.sprite.index].visible = true;
 						BlueBack.Gl.SpriteTool.SetXYWH(ref this.sprite.spritelist.buffer[this.sprite.index],t_x,t_y,t_w,t_h,UnitySetting.Config.SCREEN_W,UnitySetting.Config.SCREEN_H);
 
-						if(t_y < - t_y_offset){
+						//ＳＥ再生。
+						if(this.seflag == true){
+							if((t_y + t_h / 2) < t_onmemory.hud.bar_y){
+								this.seflag = false;
+
+								switch(this.position){
+								case -1:
+									{
+										Execute.Engine.GetSingleton().audio_se.PlayOnce(7,0.5f);
+									}break;
+								case 1:
+									{
+										Execute.Engine.GetSingleton().audio_se.PlayOnce(1,1.0f);
+									}break;
+								case 2:
+									{
+										Execute.Engine.GetSingleton().audio_se.PlayOnce(2,1.0f);
+									}break;
+								default:
+									{
+										#if(UNITY_EDITOR)
+										UnityEngine.Debug.Assert(false);
+										#endif
+									}break;
+								}
+							}
+						}
+
+						//範囲外チェック。
+						if(t_y + this.height < -t_space){
 							this.mode = Mode.Out;
 							this.sprite.spritelist.buffer[this.sprite.index].visible = false;
 							break;
 						}
 
 						//ヒットチェック。
-						if((t_y <= t_onmemory.hud.bar_y)&&(t_onmemory.hud.bar_y <= t_y + t_h)){
-							t_onmemory.hud.onover_enemy = true;
+						if(this.position >= 0){
+							if((t_y <= t_onmemory.hud.bar_y)&&(t_onmemory.hud.bar_y <= t_y + t_h)){
+								t_onmemory.hud.onover_enemy = true;
+							}
 						}
-
 					}break;
 				case Mode.Out:
 					{
 					}break;
 				}
 			}else if(t_onmemory.param.phasetype == Param.PhaseType.Play){
+
+				int t_space = 256;
+
+				int t_w = this.width;
+				int t_h = this.height;
+				int t_x = this.sprite_x - t_w / 2;
+				int t_y = (int)((t_onmemory.hud.bar_y - this.height / 2) - (this.index * (this.height + t_onmemory.param.space) + UnitySetting.Config.SCREEN_H * 0.5f - t_onmemory.param.gametime_sec * t_onmemory.param.movespeed));
+
 				switch(this.mode){
 				case Mode.In:
 					{
 						//表示待ち。
 
-						if(t_onmemory.param.gametime_sec >= this.index * t_onmemory.param.popinterval){
+						if(t_y + this.height > -t_space){
 							this.mode = Mode.View;
 						}
 					}break;
@@ -196,91 +252,125 @@ namespace Game.Enemy
 					{
 						//表示。
 
-						float t_time = t_onmemory.param.gametime_sec - this.index * t_onmemory.param.popinterval;
+						if(this.position >= 0){
+							this.sprite.spritelist.buffer[this.sprite.index].visible = true;
+						}
 
-						int t_y_offset = 256;
-						int t_w = 64;
-						int t_h = this.height;
-						int t_x = this.sprite_x - t_w / 2;
-						int t_y = (int)(t_time * t_onmemory.param.movespeed) - t_y_offset;
-
-						this.sprite.spritelist.buffer[this.sprite.index].visible = true;
 						BlueBack.Gl.SpriteTool.SetXYWH(ref this.sprite.spritelist.buffer[this.sprite.index],t_x,t_y,t_w,t_h,UnitySetting.Config.SCREEN_W,UnitySetting.Config.SCREEN_H);
 
-						if(t_y > UnitySetting.Config.SCREEN_H + t_y_offset){
+						//範囲外チェック。
+						if(t_y >= UnitySetting.Config.SCREEN_H + t_space){
 							this.mode = Mode.Out;
+							this.sprite.spritelist.buffer[this.sprite.index].visible = false;
+
+							if(this.position < 0){
+								this.result = Result.Success;
+							}
+
+							break;
+						}
+
+						//ＳＥ再生。
+						if(this.seflag == true){
+							if((t_y + t_h / 2) > t_onmemory.hud.bar_y){
+								this.seflag = false;
+
+								switch(this.position){
+								case -1:
+									{
+										Execute.Engine.GetSingleton().audio_se.PlayOnce(7,0.5f);
+									}break;
+								case 1:
+								case 2:
+									{
+									}break;
+								default:
+									{
+										#if(UNITY_EDITOR)
+										UnityEngine.Debug.Assert(false);
+										#endif
+									}break;
+								}
+							}
 						}
 
 						//ヒットチェック。
 						if((this.result == Result.None)&&(Game.OnMemory.GetSingleton().param.life > 0)){
 							if((t_y <= t_onmemory.hud.bar_y)&&(t_onmemory.hud.bar_y <= t_y + t_h)){
-								t_onmemory.hud.onover_enemy = true;
+								if(this.position >= 0){
+									t_onmemory.hud.onover_enemy = true;
 
-								if(Execute.Engine.GetSingleton().mouse_fixedupdate.left.down == true){
-									if(this.position == 1){
-										//成功。
-										this.result = Result.Success;
-										this.mode = Mode.Out;
-										this.sprite.spritelist.buffer[this.sprite.index].visible = false;
+									if(Execute.Engine.GetSingleton().mouse_fixedupdate.left.down == true){
+										if(this.position == 1){
+											//成功。
+											this.result = Result.Success;
+											this.mode = Mode.Out;
+											this.sprite.spritelist.buffer[this.sprite.index].visible = false;
 
-										#if(UNITY_EDITOR)
-										UnityEngine.Debug.Log("success");
-										#endif
+											#if(UNITY_EDITOR)
+											UnityEngine.Debug.Log("success");
+											#endif
 
-										break;
-									}else{
-										//ミス。
-										this.result = Result.Miss;
-										//this.mode = Mode.Out;
-										this.sprite.spritelist.buffer[this.sprite.index].visible = false;
+											break;
+										}else{
+											//ミス。
+											this.result = Result.Miss;
+											//this.mode = Mode.Out;
+											this.sprite.spritelist.buffer[this.sprite.index].visible = false;
 
-										#if(UNITY_EDITOR)
-										UnityEngine.Debug.Log("miss");
-										#endif
+											#if(UNITY_EDITOR)
+											UnityEngine.Debug.Log("miss");
+											#endif
 
-										this.Damage();
+											this.Damage();
 
-										break;
+											break;
+										}
+									}else if(Execute.Engine.GetSingleton().mouse_fixedupdate.right.down == true){
+										if(this.position == 2){
+											//成功。
+											this.result = Result.Success;
+											this.mode = Mode.Out;
+											this.sprite.spritelist.buffer[this.sprite.index].visible = false;
+
+											#if(UNITY_EDITOR)
+											UnityEngine.Debug.Log("success");
+											#endif
+
+											break;
+										}else{
+											//ミス。
+											this.result = Result.Miss;
+											//this.mode = Mode.Out;
+											this.sprite.spritelist.buffer[this.sprite.index].visible = false;
+
+											#if(UNITY_EDITOR)
+											UnityEngine.Debug.Log("miss");
+											#endif
+
+											this.Damage();
+
+											break;
+										}
 									}
-								}else if(Execute.Engine.GetSingleton().mouse_fixedupdate.right.down == true){
-									if(this.position == 2){
-										//成功。
-										this.result = Result.Success;
-										this.mode = Mode.Out;
-										this.sprite.spritelist.buffer[this.sprite.index].visible = false;
-
-										#if(UNITY_EDITOR)
-										UnityEngine.Debug.Log("success");
-										#endif
-
-										break;
-									}else{
-										//ミス。
-										this.result = Result.Miss;
-										//this.mode = Mode.Out;
-										this.sprite.spritelist.buffer[this.sprite.index].visible = false;
-
-										#if(UNITY_EDITOR)
-										UnityEngine.Debug.Log("miss");
-										#endif
-
-										this.Damage();
-
-										break;
-									}
+								}else{
+									//ダミーはスルー。
 								}
 							}else if(t_y > t_onmemory.hud.bar_y){
-							
-								this.result = Result.TimeOut;
-								this.sprite.spritelist.buffer[this.sprite.index].visible = false;
+								if(this.position >= 0){
+									this.result = Result.TimeOut;
+									this.sprite.spritelist.buffer[this.sprite.index].visible = false;
 
-								#if(UNITY_EDITOR)
-								UnityEngine.Debug.Log("timeout");
-								#endif
+									#if(UNITY_EDITOR)
+									UnityEngine.Debug.Log("timeout");
+									#endif
 
-								this.Damage();
+									this.Damage();
 
-								break;
+									break;
+								}else{
+									//ダミーはスルー。
+								}
 							}
 						}
 					}break;

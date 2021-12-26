@@ -60,6 +60,12 @@ namespace Execute
 		*/
 		public BlueBack.Mouse.Mouse mouse_fixedupdate;
 
+		/** audio_se
+		*/
+		public UnityEngine.AudioListener audio_listener;
+		public Game.Audio.Se audio_se;
+		public int audio_se_volume;
+
 		/** [singleton]constructor
 		*/
 		private Engine()
@@ -76,6 +82,11 @@ namespace Execute
 
 			//mouse_fixedupdate
 			this.mouse_fixedupdate = null;
+
+			//audio_se
+			this.audio_se = null;
+			this.audio_listener = null;
+			this.audio_se_volume = 0;
 		}
 
 		/** [singleton]破棄。
@@ -107,6 +118,11 @@ namespace Execute
 			if(this.mouse_fixedupdate != null){
 				this.mouse_fixedupdate.Dispose();
 				this.mouse_fixedupdate = null;
+			}
+
+			if(this.audio_se != null){
+				this.audio_se.Dispose();
+				this.audio_se = null;
 			}
 		}
 	}

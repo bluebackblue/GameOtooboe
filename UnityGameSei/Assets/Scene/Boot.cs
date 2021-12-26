@@ -117,6 +117,9 @@ namespace Scene
 			//フォント。
 			yield return new Execute.FontExecute().Boot();
 
+			//オーディオ。
+			yield return new Execute.AudioExecute().Boot();
+
 			//パラメータ。
 			yield return new Execute.ParamExecute().Boot();
 

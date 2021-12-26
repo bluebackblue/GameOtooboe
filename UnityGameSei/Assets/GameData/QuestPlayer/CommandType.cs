@@ -40,9 +40,9 @@ namespace GameData.QuestPlayer
 		*/
 		MoveSpeed,
 
-		/** PopInterval
+		/** Space
 		*/
-		PopInterval,
+		Space,
 	}
 }
 
