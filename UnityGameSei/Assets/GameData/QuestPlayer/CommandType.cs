@@ -43,6 +43,10 @@ namespace GameData.QuestPlayer
 		/** Space
 		*/
 		Space,
+
+		/** ModeBlack
+		*/
+		ModeBlack,
 	}
 }
 

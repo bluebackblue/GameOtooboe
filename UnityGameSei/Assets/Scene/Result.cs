@@ -159,9 +159,6 @@ namespace Scene
 			//メニュー。操作。ロック。
 			this.menu.Lock();
 
-			//最初から。
-			Game.OnMemory.GetSingleton().questplayer_dataindex = 1;
-
 			//code
 			this.code = (Menu.Result.Code)a_code;
 
@@ -179,6 +176,9 @@ namespace Scene
 					//タイトルへ。
 					this.endflag = true;
 					Execute.Engine.GetSingleton().scene.SetNextScene(Execute.Engine.GetSingleton().scene_list[(int)UnitySetting.SceneIndex.Title]);
+
+					//最初から。
+					Game.OnMemory.GetSingleton().questplayer_dataindex = 0;
 				}break;
 			case Menu.Result.Code.Retry:
 				{

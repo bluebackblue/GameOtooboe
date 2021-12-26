@@ -45,6 +45,10 @@ namespace Menu
 		*/
 		public Code code;
 
+		/** time
+		*/
+		public float time;
+
 		/** constructor
 		*/
 		public Result(EventCallBack_Base a_eventcallback)
@@ -57,6 +61,9 @@ namespace Menu
 
 			//lockflag
 			this.lockflag = false;
+
+			//time
+			this.time = 0.0f;
 		}
 
 		/** [Menu.Menu_Base]破棄。
@@ -69,6 +76,9 @@ namespace Menu
 		*/
 		public void Start()
 		{
+			//time
+			this.time = 0.0f;
+
 			//lockflag
 			this.lockflag = false;
 
@@ -78,8 +88,7 @@ namespace Menu
 			this.message_text.font = Execute.Engine.GetSingleton().font;
 
 			if(Game.OnMemory.GetSingleton().questplayer.result == Game.QuestPlayer.QuestResult.Success){
-				//TODO:GameData.QuestPlayer.Dataから次が存在するかチェック。
-				if(Game.OnMemory.GetSingleton().questplayer_dataindex >= 2){
+				if(Game.OnMemory.GetSingleton().questplayer_dataindex + 1 >= Game.OnMemory.GetSingleton().questplayer_filenamelist.Length){
 					this.code = Code.Title;
 					this.message_text.fontSize = 60;
 					this.message_text.text = "THANK YOU FOR PLAYING";
@@ -135,8 +144,12 @@ namespace Menu
 		public void UnityFixedUpdate()
 		{
 			if(this.lockflag == false){
-				if(this.engine.mouse_fixedupdate.left.down == true){
-					this.eventcallback.Call((int)this.code);
+				if(this.time <= 1.0f){
+					this.time += UnityEngine.Time.deltaTime;
+				}else{
+					if(this.engine.mouse_fixedupdate.left.down == true){
+						this.eventcallback.Call((int)this.code);
+					}
 				}
 			}
 		}

@@ -20,6 +20,10 @@ namespace UnitySetting
 		*/
 		Additive,
 
+		/** フレーム。
+		*/
+		Frame,
+
 		/** 総数。
 		*/
 		Max,

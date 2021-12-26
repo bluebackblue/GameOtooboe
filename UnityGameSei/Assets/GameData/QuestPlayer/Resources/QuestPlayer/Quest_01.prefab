@@ -97,6 +97,10 @@ MonoBehaviour:
     value_int: 0
     value_float: 20
     value_string: 
+  - command: 9
+    value_int: 0
+    value_float: 0
+    value_string: 
   - command: 6
     value_int: 1
     value_float: 0

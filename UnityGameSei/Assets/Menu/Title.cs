@@ -73,7 +73,7 @@ namespace Menu
 						t_color = new UnityEngine.Color(0.3f,0.3f,1.0f,1.0f);
 					}
 
-					this.volume_sprite[ii] = Execute.Engine.GetSingleton().gl.spritelist[0].CreateSprite(false,(int)UnitySetting.MaterialIndex.Opaque,(int)UnitySetting.TextureIndex.None,t_color,t_x,t_y,t_w,t_h,UnitySetting.Config.SCREEN_W,UnitySetting.Config.SCREEN_H);
+					this.volume_sprite[ii] = Execute.Engine.GetSingleton().gl.spritelist[0].CreateSprite(false,(int)UnitySetting.MaterialIndex.Frame,(int)UnitySetting.TextureIndex.None,t_color,t_x,t_y,t_w,t_h,UnitySetting.Config.SCREEN_W,UnitySetting.Config.SCREEN_H);
 				}
 			}
 

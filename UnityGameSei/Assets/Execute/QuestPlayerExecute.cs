@@ -43,6 +43,7 @@ namespace Execute
 		*/
 		public System.Collections.IEnumerator Boot()
 		{
+			this.onmemory.questplayer_filenamelist = UnityEngine.Resources.Load<GameData.QuestPlayer.QuestList_MonoBehaviour>("QuestPlayer/QuestList").list;
 			this.onmemory.questplayer = new Game.QuestPlayer.QuestPlayer<GameData.QuestPlayer.QuestItem>(this);
 			yield break;
 		}
@@ -70,7 +71,7 @@ namespace Execute
 			this.countdown_text.enabled = false;
 			this.countdown_text.font = Execute.Engine.GetSingleton().font;
 
-			string t_path = "QuestPlayer/Quest_" + a_dataindex.ToString("D2");
+			string t_path = "QuestPlayer/" + this.onmemory.questplayer_filenamelist[a_dataindex];
 			#if(UNITY_EDITOR)
 			UnityEngine.Debug.Log(t_path);
 			#endif
@@ -84,7 +85,7 @@ namespace Execute
 				this.onmemory.enemy_list.Clear();
 
 				//ダミー。
-				for(int ii=0;ii<10;ii++){
+				for(int ii=0;ii<4;ii++){
 					this.onmemory.enemy_list.Add(new Game.Enemy.Enemy(this.onmemory.enemy_list.Count,-1));
 				}
 
@@ -101,6 +102,10 @@ namespace Execute
 					case GameData.QuestPlayer.CommandType.Space:
 						{
 							this.onmemory.param.space = t_list[ii].value_float;
+						}break;
+					case GameData.QuestPlayer.CommandType.ModeBlack:
+						{
+							this.onmemory.param.modeblack = t_list[ii].value_int;
 						}break;
 					}
 				}
@@ -135,6 +140,8 @@ namespace Execute
 
 			switch(a_item.command){
 			case GameData.QuestPlayer.CommandType.Data:
+			case GameData.QuestPlayer.CommandType.MoveSpeed:
+			case GameData.QuestPlayer.CommandType.Space:
 				{
 					#if(UNITY_EDITOR)
 					this.debug_text.text = t_debugtext_prefix;
@@ -157,6 +164,8 @@ namespace Execute
 						}
 
 						this.onmemory.hud.DispBar(true);
+
+						this.onmemory.hud.DispAuto(true);
 					}else{
 						this.onmemory.param.gametime_sec += UnityEngine.Time.fixedDeltaTime;
 
@@ -168,6 +177,7 @@ namespace Execute
 							}
 						}
 						if(t_fix == true){
+							this.onmemory.hud.DispAuto(false);
 							this.onmemory.hud.DispBar(false);
 							a_questplayer.SetNextIndex(a_index + 1);
 							return;

@@ -1,10 +1,10 @@
 
 
-/** @brief 半透明。
+/** @brief フレーム。
 */
 
 
-Shader "Gl/transparent"
+Shader "Gl/frame"
 {
 	Properties
 	{
@@ -70,7 +70,12 @@ Shader "Gl/transparent"
 			*/
 			fixed4 frag(v2f a_v2f) : SV_Target
 			{
-				return tex2D(_MainTex,a_v2f.uv) * a_v2f.color;
+				float4 t_color = tex2D(_MainTex,a_v2f.uv) * a_v2f.color;
+				
+				float t_power = saturate(max(pow((a_v2f.uv.x - 0.5f) * 2,6),pow((a_v2f.uv.y - 0.5f) * 2,6)));
+				t_color.a *= t_power;
+
+				return t_color;
 			}
 
 			ENDCG

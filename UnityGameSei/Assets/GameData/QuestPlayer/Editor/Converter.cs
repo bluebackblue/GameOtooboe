@@ -19,12 +19,19 @@ namespace GameData.QuestPlayer.Editor
 			BlueBack.JsonItem.JsonItem t_sheetlist_jsonitem = BlueBack.Excel.ConvertToJson.ConvertToJson.Convert(t_excel,BlueBack.Excel.ConvertToJson.ConvertParam.CreateDefault());
 			t_excel.Close();
 
-			ConvertAll(t_sheetlist_jsonitem);
+			//TODO:フォルダ削除。
+			{
+
+			}
+
+			ConvertQuest(t_sheetlist_jsonitem);
+
+			ConvertList(t_sheetlist_jsonitem);
 		}
 
-		/** QuestXls_Item
+		/** QuestXls_QuestItem
 		*/
-		public struct QuestXls_Item
+		public struct QuestXls_QuestItem
 		{
 			/** command
 			*/
@@ -51,25 +58,68 @@ namespace GameData.QuestPlayer.Editor
 			public string value_string;
 		}
 
-		/** ConvertAll
+		/** QuestXls_ListItem
 		*/
-		private static void ConvertAll(BlueBack.JsonItem.JsonItem a_sheetlist_jsonitem)
+		public struct QuestXls_ListItem
 		{
-			//TODO:フォルダ削除。
-			{
+			/** command
+			*/
+			public string command;
 
+			/** param
+			*/
+			public string param;
+		}
+
+		/** ConvertList
+		*/
+		private static void ConvertList(BlueBack.JsonItem.JsonItem a_sheetlist_jsonitem)
+		{
+			System.Collections.Generic.List<QuestXls_ListItem> t_sheet = BlueBack.JsonItem.Convert.JsonItemToObject<System.Collections.Generic.List<QuestXls_ListItem>>(a_sheetlist_jsonitem.GetItem("list"));
+
+			string t_filename = null;
+			System.Collections.Generic.List<string> t_filename_list = new System.Collections.Generic.List<string>();
+
+			for(int ii=0;ii<t_sheet.Count;ii++){
+				switch(t_sheet[ii].command){
+				case "<filename>":
+					{
+						t_filename = t_sheet[ii].param;
+					}break;
+				case "<item>":
+					{
+						t_filename_list.Add(t_sheet[ii].param);
+					}break;
+				}
 			}
 
+			UnityEngine.GameObject t_prefab_temp = new UnityEngine.GameObject("temp");
+			{
+				GameData.QuestPlayer.QuestList_MonoBehaviour t_questlist_monobehaviour = t_prefab_temp.AddComponent<GameData.QuestPlayer.QuestList_MonoBehaviour>();
+				t_questlist_monobehaviour.list = t_filename_list.ToArray();
+			}
+			BlueBack.AssetLib.Editor.SavePrefabWithAssetsPath.TrySaveAs(t_prefab_temp,"" + "GameData/QuestPlayer/Resources/QuestPlayer/" + t_filename);
+			UnityEngine.GameObject.DestroyImmediate(t_prefab_temp);
+
+			BlueBack.AssetLib.Editor.RefreshAssetDatabase.Refresh();
+		}
+
+		/** ConvertQuest
+		*/
+		private static void ConvertQuest(BlueBack.JsonItem.JsonItem a_sheetlist_jsonitem)
+		{
 			foreach(string t_sheetname in a_sheetlist_jsonitem.GetAssociativeKeyList()){
-				Convert(a_sheetlist_jsonitem,t_sheetname);
+				if(t_sheetname.StartsWith("quest_") == true){
+					ConvertQuest_Sheet(a_sheetlist_jsonitem,t_sheetname);
+				}
 			}
 		}
 
-		/** Convert
+		/** ConvertQuest_Sheet
 		*/
-		private static void Convert(BlueBack.JsonItem.JsonItem a_sheetlist_jsonitem,string a_sheetname)
+		private static void ConvertQuest_Sheet(BlueBack.JsonItem.JsonItem a_sheetlist_jsonitem,string a_sheetname)
 		{
-			System.Collections.Generic.List<QuestXls_Item> t_sheet = BlueBack.JsonItem.Convert.JsonItemToObject<System.Collections.Generic.List<QuestXls_Item>>(a_sheetlist_jsonitem.GetItem(a_sheetname));
+			System.Collections.Generic.List<QuestXls_QuestItem> t_sheet = BlueBack.JsonItem.Convert.JsonItemToObject<System.Collections.Generic.List<QuestXls_QuestItem>>(a_sheetlist_jsonitem.GetItem(a_sheetname));
 
 			string t_filename = null;
 			System.Collections.Generic.List<GameData.QuestPlayer.QuestItem> t_data_list = new System.Collections.Generic.List<QuestItem>();

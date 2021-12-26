@@ -49,6 +49,7 @@ namespace Game
 		*/
 		public QuestPlayer.QuestPlayer<GameData.QuestPlayer.QuestItem> questplayer;
 		public int questplayer_dataindex;
+		public string[] questplayer_filenamelist;
 
 		/** enemy_list
 		*/
@@ -70,6 +71,7 @@ namespace Game
 			//questplayer
 			this.questplayer = null;
 			this.questplayer_dataindex = 0;
+			this.questplayer_filenamelist = null;
 
 			//enemy_list
 			this.enemy_list = null;

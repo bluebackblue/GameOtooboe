@@ -27,6 +27,10 @@ namespace Game.Param
 		/** life
 		*/
 		public int life;
+
+		/** modeblack
+		*/
+		public int modeblack;
 	}
 }
 

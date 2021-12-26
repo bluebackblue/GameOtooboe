@@ -83,10 +83,12 @@ namespace Game.Enemy
 		*/
 		public Enemy(int a_index,int a_position)
 		{
+			Game.OnMemory t_onmemory = Game.OnMemory.GetSingleton();
+
 			this.index = a_index;
 			this.position = a_position;
 
-			UnityEngine.Color t_color;
+			/*
 			switch(this.position){
 			case -1:
 				{
@@ -95,13 +97,27 @@ namespace Game.Enemy
 				}break;
 			case 1:
 				{
-					t_color = new UnityEngine.Color(1,0,0,1);
-					this.sprite_x = UnitySetting.Config.SCREEN_W / 2 - 100;
+					if(t_onmemory.param.modeblack == 0){
+						//色判別可能、位置判別可能。
+						t_color = new UnityEngine.Color(1,0,0,1);
+						this.sprite_x = UnitySetting.Config.SCREEN_W / 2 - 100;
+					}else if(t_onmemory.param.modeblack == 1){
+						//色判別不可。
+						t_color = new UnityEngine.Color(0.8f,0.8f,0.8f,1);
+						this.sprite_x = UnitySetting.Config.SCREEN_W / 2 - 100;
+					}
 				}break;
 			case 2:
 				{
-					t_color = new UnityEngine.Color(0,1,0,1);
-					this.sprite_x = UnitySetting.Config.SCREEN_W / 2 + 100;
+					if(t_onmemory.param.modeblack == 0){
+						//色判別可能、位置判別可能。
+						t_color = new UnityEngine.Color(0,1,0,1);
+						this.sprite_x = UnitySetting.Config.SCREEN_W / 2 + 100;
+					}else if(t_onmemory.param.modeblack == 1){
+						//色判別不可。
+						t_color = new UnityEngine.Color(0.8f,0.8f,0.8f,1);
+						this.sprite_x = UnitySetting.Config.SCREEN_W / 2 + 100;
+					}
 				}break;
 			default:
 				{
@@ -112,8 +128,11 @@ namespace Game.Enemy
 					t_color = new UnityEngine.Color(0,1,0,1);
 				}break;
 			}
+			*/
+			UnityEngine.Color t_color = new UnityEngine.Color(0,0,0,0);
 
-			this.sprite = Execute.Engine.GetSingleton().gl.spritelist[0].CreateSprite(false,(int)UnitySetting.MaterialIndex.Opaque,(int)UnitySetting.TextureIndex.None,in t_color,0,0,0,0,UnitySetting.Config.SCREEN_W,UnitySetting.Config.SCREEN_H);
+
+			this.sprite = Execute.Engine.GetSingleton().gl.spritelist[0].CreateSprite(false,(int)UnitySetting.MaterialIndex.Frame,(int)UnitySetting.TextureIndex.None,in t_color,0,0,0,0,UnitySetting.Config.SCREEN_W,UnitySetting.Config.SCREEN_H);
 			this.mode = Game.Enemy.Enemy.Mode.In;
 
 			#if(DEF_BLUEBACK_GL_DEBUGVIEW)
@@ -134,10 +153,79 @@ namespace Game.Enemy
 		*/
 		public void Reset()
 		{
+			Game.OnMemory t_onmemory = Game.OnMemory.GetSingleton();
+
 			this.mode = Game.Enemy.Enemy.Mode.In;
 			this.sprite.spritelist.buffer[this.sprite.index].visible = false;
 			this.result = Result.None;
 			this.seflag = true;
+
+			UnityEngine.Color t_color = new UnityEngine.Color(0,0,0,0);
+			this.sprite_x = UnitySetting.Config.SCREEN_W / 2;
+
+			if(Game.OnMemory.GetSingleton().param.phasetype == Param.PhaseType.View){
+				switch(this.position){
+				case -1:
+					{
+						t_color = new UnityEngine.Color(0,0,0,0);
+					}break;
+				case 1:
+					{
+						//色判別可能、位置判別可能。
+						t_color = new UnityEngine.Color(1,0,0,1);
+					}break;
+				case 2:
+					{
+						//色判別可能、位置判別可能。
+						t_color = new UnityEngine.Color(0,1,0,1);
+					}break;
+				default:
+					{
+						#if(UNITY_EDITOR)
+						UnityEngine.Debug.Assert(false);
+						#endif
+
+						t_color = new UnityEngine.Color(0,1,0,1);
+					}break;
+				}
+			}else{
+				switch(this.position){
+				case -1:
+					{
+						t_color = new UnityEngine.Color(0,0,0,0);
+					}break;
+				case 1:
+					{
+						if(t_onmemory.param.modeblack == 0){
+							//色判別可能、位置判別可能。
+							t_color = new UnityEngine.Color(1,0,0,1);
+						}else if(t_onmemory.param.modeblack == 1){
+							//色判別不可。
+							t_color = new UnityEngine.Color(0.8f,0.8f,0.8f,1);
+						}
+					}break;
+				case 2:
+					{
+						if(t_onmemory.param.modeblack == 0){
+							//色判別可能、位置判別可能。
+							t_color = new UnityEngine.Color(0,1,0,1);
+						}else if(t_onmemory.param.modeblack == 1){
+							//色判別不可。
+							t_color = new UnityEngine.Color(0.8f,0.8f,0.8f,1);
+						}
+					}break;
+				default:
+					{
+						#if(UNITY_EDITOR)
+						UnityEngine.Debug.Assert(false);
+						#endif
+
+						t_color = new UnityEngine.Color(0,1,0,1);
+					}break;
+				}
+			}
+
+			this.sprite.spritelist.buffer[this.sprite.index].color = t_color;
 		}
 
 		/** [System.IDisposable]Dispose

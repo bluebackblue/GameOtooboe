@@ -1,14 +1,16 @@
 
 
-/** @brief 半透明。
+/** @brief インゲーム。
 */
 
 
-Shader "Gl/transparent"
+Shader "InGame/Side"
 {
 	Properties
 	{
-		_MainTex				("_MainTex",2D)									= "white"{}
+		_Color		("_Color",Color)	= (1,1,1,1)
+		inv_x		("inv_x",Float)		= 0.0
+		inv_y		("inv_y",Float)		= 0.0
 	}
 	SubShader
 	{
@@ -49,10 +51,15 @@ Shader "Gl/transparent"
 				float4 color		: COLOR0;
 			};
 
-			/** _MainTex
+			/** _Color
 			*/
-			sampler2D _MainTex;
-			
+			float4 _Color;
+		
+			/** inv
+			*/
+			float inv_x;
+			float inv_y;
+		
 			/** vert
 			*/
 			v2f vert(appdata a_appdata)
@@ -70,7 +77,22 @@ Shader "Gl/transparent"
 			*/
 			fixed4 frag(v2f a_v2f) : SV_Target
 			{
-				return tex2D(_MainTex,a_v2f.uv) * a_v2f.color;
+				float4 t_color = _Color * a_v2f.color;
+
+				float t_x = a_v2f.uv.x;
+				if(inv_x > 0.0f){
+					t_x = 1.0f - t_x;
+				}
+
+				float t_y = a_v2f.uv.y;
+				if(inv_y > 0.0f){
+					t_y = 1.0f - t_y;
+				}
+
+				float t_power = saturate(0.4f - pow((t_x + 0.2f) * (t_y + 0.2f),0.8f));
+				t_color.a *= t_power;
+
+				return t_color;
 			}
 
 			ENDCG

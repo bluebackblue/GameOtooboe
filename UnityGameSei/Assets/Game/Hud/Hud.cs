@@ -23,6 +23,11 @@ namespace Game.Hud
 		public BlueBack.Gl.SpriteIndex[] life_spriteindex;
 		public bool life_flag;
 
+		/** auto_text
+		*/
+		public UnityEngine.UI.Text auto_text;
+		public bool auto_flag;
+
 		/** constructor
 		*/
 		public Hud()
@@ -41,10 +46,14 @@ namespace Game.Hud
 			//life_spriteindex
 			this.life_spriteindex = new BlueBack.Gl.SpriteIndex[4];
 			for(int ii=0;ii<this.life_spriteindex.Length;ii++){
-				this.life_spriteindex[ii] = Execute.Engine.GetSingleton().gl.spritelist[1].CreateSprite(false,(int)UnitySetting.MaterialIndex.Additive,(int)UnitySetting.TextureIndex.None,new UnityEngine.Color(0.87f,0.68f,0.0f,1.0f),0,0,0,0,UnitySetting.Config.SCREEN_W,UnitySetting.Config.SCREEN_H);
+				this.life_spriteindex[ii] = Execute.Engine.GetSingleton().gl.spritelist[1].CreateSprite(false,(int)UnitySetting.MaterialIndex.Frame,(int)UnitySetting.TextureIndex.None,new UnityEngine.Color(0.87f,0.68f,0.0f,1.0f),0,0,0,0,UnitySetting.Config.SCREEN_W,UnitySetting.Config.SCREEN_H);
 			}
 
 			this.life_flag = false;
+
+			//auto
+			this.auto_text = null;
+			this.auto_flag = false;
 		}
 
 		/** [System.IDisposable]Dispose
@@ -85,6 +94,26 @@ namespace Game.Hud
 		public void UnityFixedUpdate()
 		{
 			this.onover_enemy = false;
+		}
+
+		/** ƒV[ƒ““Ç‚Ýž‚ÝŠ®—¹B
+		*/
+		public void InGame_SceneLoadEnd()
+		{
+			this.auto_text = UnityEngine.GameObject.Find("Auto_Text").GetComponent<UnityEngine.UI.Text>();
+		}
+
+		/** DispAuto
+		*/
+		public void DispAuto(bool a_flag)
+		{
+			this.auto_flag = a_flag;
+
+			if(a_flag == true){
+				this.auto_text.enabled = true;
+			}else{
+				this.auto_text.enabled = false;
+			}
 		}
 
 		/** DispLife

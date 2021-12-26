@@ -70,6 +70,9 @@ namespace Scene
 				//questplayer
 				this.onmemory.questplayer.Load(Game.OnMemory.GetSingleton().questplayer_dataindex);
 
+				//シーン読み込み完了。
+				this.onmemory.hud.InGame_SceneLoadEnd();
+
 				//ライフ表示。
 				this.onmemory.hud.DispLife(true);
 

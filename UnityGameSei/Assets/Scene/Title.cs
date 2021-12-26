@@ -132,7 +132,7 @@ namespace Scene
 			this.menu.Lock();
 
 			//最初から。
-			Game.OnMemory.GetSingleton().questplayer_dataindex = 1;
+			Game.OnMemory.GetSingleton().questplayer_dataindex = 0;
 
 			//ライフ。
 			Game.OnMemory.GetSingleton().param.life = 4;
