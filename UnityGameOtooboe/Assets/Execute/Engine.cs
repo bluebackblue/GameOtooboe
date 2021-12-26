@@ -64,7 +64,10 @@ namespace Execute
 		*/
 		public UnityEngine.AudioListener audio_listener;
 		public Game.Audio.Se audio_se;
-		public int audio_se_volume;
+
+		/** fade
+		*/
+		public Game.Fade.Fade fade;
 
 		/** [singleton]constructor
 		*/
@@ -83,10 +86,12 @@ namespace Execute
 			//mouse_fixedupdate
 			this.mouse_fixedupdate = null;
 
-			//audio_se
+			//audio
 			this.audio_se = null;
 			this.audio_listener = null;
-			this.audio_se_volume = 0;
+
+			//fade
+			this.fade = null;
 		}
 
 		/** [singleton]破棄。
@@ -123,6 +128,11 @@ namespace Execute
 			if(this.audio_se != null){
 				this.audio_se.Dispose();
 				this.audio_se = null;
+			}
+
+			if(this.fade != null){
+				this.fade.Dispose();
+				this.fade = null;
 			}
 		}
 	}

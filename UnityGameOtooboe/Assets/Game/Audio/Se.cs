@@ -19,12 +19,21 @@ namespace Game.Audio
 		/** volume
 		*/
 		public float volume;
+		public int volume_index;
+		public float[] volume_list;
+
+		/** execute
+		*/
+		public Execute.AudioExecute execute;
 
 		/** constructor
 		*/
-		public Se(UnityEngine.AudioClip[] a_audioclip_list,float a_volume)
+		public Se(UnityEngine.AudioClip[] a_audioclip_list,float a_volume,Execute.AudioExecute a_execute)
 		{
-			this.se_gameobject = new UnityEngine.GameObject("audiose_se");
+			//execute
+			this.execute = a_execute;
+
+			this.se_gameobject = new UnityEngine.GameObject("se");
 			UnityEngine.GameObject.DontDestroyOnLoad(this.se_gameobject);
 
 			this.audiosource_list = new UnityEngine.AudioSource[a_audioclip_list.Length];
@@ -33,7 +42,28 @@ namespace Game.Audio
 				this.audiosource_list[ii].clip = a_audioclip_list[ii];
 			}
 
+			//volume
 			this.volume = a_volume;
+
+			//volume_index
+			this.volume_index = 0;
+
+			//volume_list
+			this.volume_list = new float[]{
+				0.0f,
+				0.1f,
+				0.2f,
+				0.5f,
+				1.0f,
+			};
+		}
+
+		/** SetVolumeIndex
+		*/
+		public void SetVolumeIndex(int a_volume_index)
+		{
+			this.volume_index = UnityEngine.Mathf.Clamp(a_volume_index,0,this.volume_list.Length - 1);
+			this.volume = this.volume_list[this.volume_index];
 		}
 
 		/** [IDisposable.Dispose]

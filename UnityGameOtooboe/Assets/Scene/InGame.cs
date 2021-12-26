@@ -63,20 +63,22 @@ namespace Scene
 		public bool CurrentSceneStart(bool a_is_sceneloadend)
 		{
 			if(a_is_sceneloadend == true){
+				if(Execute.Engine.GetSingleton().fade.SetVisible(false) == true){
 
-				//enemy_list
-				this.onmemory.enemy_list = new System.Collections.Generic.List<Game.Enemy.Enemy>();
+					//enemy_list
+					this.onmemory.enemy_list = new System.Collections.Generic.List<Game.Enemy.Enemy>();
 
-				//questplayer
-				this.onmemory.questplayer.Load(Game.OnMemory.GetSingleton().questplayer_dataindex);
+					//questplayer
+					this.onmemory.questplayer.Load(Game.OnMemory.GetSingleton().questplayer_dataindex);
 
-				//シーン読み込み完了。
-				this.onmemory.hud.InGame_SceneLoadEnd();
+					//シーン読み込み完了。
+					this.onmemory.hud.InGame_SceneLoadEnd();
 
-				//ライフ表示。
-				this.onmemory.hud.DispLife(true);
+					//ライフ表示。
+					this.onmemory.hud.DispLife(true);
 
-				return true;
+					return true;
+				}
 			}
 
 			return false;

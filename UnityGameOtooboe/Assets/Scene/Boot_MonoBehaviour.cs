@@ -16,6 +16,10 @@ namespace Scene
 		*/
 		public static UnityEngine.MonoBehaviour s_monobehaviour = null;
 
+		/** s_isfocus
+		*/
+		public static bool s_isfocus = true;
+
 		/** Initialize
 		*/
 		[UnityEngine.RuntimeInitializeOnLoadMethod]
@@ -50,6 +54,13 @@ namespace Scene
 
 			//エンジン関連。
 			Execute.Engine.DeleteSingleton();
+		}
+
+		/** OnApplicationFocus
+		*/
+		public void OnApplicationFocus(bool a_is_focus)
+		{
+			s_isfocus = a_is_focus;
 		}
 	}
 }

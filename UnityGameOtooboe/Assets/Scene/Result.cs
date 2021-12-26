@@ -79,11 +79,10 @@ namespace Scene
 		public bool CurrentSceneStart(bool a_is_sceneloadend)
 		{
 			if(a_is_sceneloadend == true){
-				this.menu.Start();
-
-				//ライフ表示。
-				this.onmemory.hud.DispLife(true);
-
+				if(Execute.Engine.GetSingleton().fade.SetVisible(false) == true){
+					this.menu.Start();
+					this.onmemory.hud.DispLife(true);
+				}
 				return true;
 			}
 			return false;
@@ -112,11 +111,12 @@ namespace Scene
 		*/
 		public bool CurrentSceneEnd()
 		{
-			//ライフ非表示。
-			this.onmemory.hud.DispLife(false);
-
-			this.menu.End();
-			return true;
+			if(Execute.Engine.GetSingleton().fade.SetVisible(true) == true){
+				this.onmemory.hud.DispLife(false);
+				this.menu.End();
+				return true;
+			}
+			return false;
 		}
 
 		/** [BlueBack.Scene.Scene_Base]更新。

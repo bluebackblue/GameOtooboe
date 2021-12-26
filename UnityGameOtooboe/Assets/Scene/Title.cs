@@ -67,8 +67,10 @@ namespace Scene
 		public bool CurrentSceneStart(bool a_is_sceneloadend)
 		{
 			if(a_is_sceneloadend == true){
-				this.menu.Start();
-				return true;
+				if(Execute.Engine.GetSingleton().fade.SetVisible(false) == true){
+					this.menu.Start();
+					return true;
+				}
 			}
 			return false;
 		}
@@ -96,8 +98,11 @@ namespace Scene
 		*/
 		public bool CurrentSceneEnd()
 		{
-			this.menu.End();
-			return true;
+			if(Execute.Engine.GetSingleton().fade.SetVisible(true) == true){
+				this.menu.End();
+				return true;
+			}
+			return false;
 		}
 
 		/** [BlueBack.Scene.Scene_Base]更新。

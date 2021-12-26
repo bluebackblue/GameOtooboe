@@ -126,6 +126,9 @@ namespace Scene
 			//ＧＬ。
 			yield return new Execute.GlExecute().Boot();
 
+			//フェード。
+			yield return new Execute.FadeExecute().Boot();
+
 			//マウス。
 			yield return new Execute.MouseExecute().Boot();
 

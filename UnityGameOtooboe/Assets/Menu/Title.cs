@@ -119,14 +119,14 @@ namespace Menu
 		{
 			if(this.lockflag == false){
 				if(UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.UpArrow) == true){
-					Execute.AudioExecute.SetSeVolume(Execute.Engine.GetSingleton().audio_se_volume + 1);
+					Execute.Engine.GetSingleton().audio_se.SetVolumeIndex(Execute.Engine.GetSingleton().audio_se.volume_index + 1);
 				}else if(UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.DownArrow) == true){
-					Execute.AudioExecute.SetSeVolume(Execute.Engine.GetSingleton().audio_se_volume - 1);
+					Execute.Engine.GetSingleton().audio_se.SetVolumeIndex(Execute.Engine.GetSingleton().audio_se.volume_index - 1);
 				}
 			}
 
 			for(int ii=0;ii<this.volume_sprite.Length;ii++){
-				if(ii <= Execute.Engine.GetSingleton().audio_se_volume){
+				if(ii <= Execute.Engine.GetSingleton().audio_se.volume_index){
 					this.volume_sprite[ii].spritelist.buffer[this.volume_sprite[ii].index].visible = true;
 				}else{
 					this.volume_sprite[ii].spritelist.buffer[this.volume_sprite[ii].index].visible = false;
@@ -158,10 +158,13 @@ namespace Menu
 				if(this.time >= 0.6f){
 					this.time -= 0.6f;
 					this.time_count = (this.time_count + 1) % 4;
-					if(this.time_count == 1){
-						Execute.Engine.GetSingleton().audio_se.PlayOnce(1,1.0f);
-					}else{
-						Execute.Engine.GetSingleton().audio_se.PlayOnce(2,1.0f);
+
+					if(Scene.Boot_MonoBehaviour.s_isfocus == true){
+						if(this.time_count == 1){
+							Execute.Engine.GetSingleton().audio_se.PlayOnce(1,1.0f);
+						}else{
+							Execute.Engine.GetSingleton().audio_se.PlayOnce(2,1.0f);
+						}
 					}
 				}
 			}
