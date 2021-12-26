@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4976448871265951708
+--- !u!1 &8959911009089873506
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8814575743570426038}
-  - component: {fileID: 6003554023612416154}
+  - component: {fileID: 8188617326288001226}
+  - component: {fileID: 8388414977336115427}
   m_Layer: 0
-  m_Name: Quest_01
+  m_Name: Quest_10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8814575743570426038
+--- !u!4 &8188617326288001226
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4976448871265951708}
+  m_GameObject: {fileID: 8959911009089873506}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,13 +32,13 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6003554023612416154
+--- !u!114 &8388414977336115427
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4976448871265951708}
+  m_GameObject: {fileID: 8959911009089873506}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 88269df90fe174d48ac6c77220c2a8a7, type: 3}
@@ -52,7 +52,7 @@ MonoBehaviour:
   - command: 1
     value_int: 5
     value_float: 0
-    value_string: "LEVEL 01 : \u9806\u756A\u3092\u899A\u3048\u3066\u306D"
+    value_string: LEVEL 10
   - command: 2
     value_int: 3
     value_float: 0
@@ -61,22 +61,6 @@ MonoBehaviour:
     value_int: 0
     value_float: 0
     value_string: 
-  - command: 1
-    value_int: 4
-    value_float: 0
-    value_string: "\u8D64 : \u5DE6\u30AF\u30EA\u30C3\u30AF"
-  - command: 1
-    value_int: 4
-    value_float: 0
-    value_string: "\u7DD1 : \u53F3\u30AF\u30EA\u30C3\u30AF"
-  - command: 1
-    value_int: 8
-    value_float: 0
-    value_string: "\u30BF\u30A4\u30DF\u30F3\u30B0\u3088\u304F\u30AF\u30EA\u30C3\u30AF\u3057\u3066\u306D"
-  - command: 1
-    value_int: 2
-    value_float: 0
-    value_string: "\u958B\u59CB"
   - command: 2
     value_int: 3
     value_float: 0
@@ -91,14 +75,26 @@ MonoBehaviour:
     value_string: 
   - command: 7
     value_int: 0
-    value_float: 150
+    value_float: 280
     value_string: 
   - command: 8
     value_int: 0
-    value_float: 20
+    value_float: 30
     value_string: 
   - command: 9
-    value_int: 0
+    value_int: 1
+    value_float: 0
+    value_string: 
+  - command: 6
+    value_int: 2
+    value_float: 0
+    value_string: 
+  - command: 6
+    value_int: 1
+    value_float: 0
+    value_string: 
+  - command: 6
+    value_int: 1
     value_float: 0
     value_string: 
   - command: 6
@@ -110,6 +106,18 @@ MonoBehaviour:
     value_float: 0
     value_string: 
   - command: 6
+    value_int: 2
+    value_float: 0
+    value_string: 
+  - command: 6
     value_int: 1
+    value_float: 0
+    value_string: 
+  - command: 6
+    value_int: 1
+    value_float: 0
+    value_string: 
+  - command: 6
+    value_int: 2
     value_float: 0
     value_string: 

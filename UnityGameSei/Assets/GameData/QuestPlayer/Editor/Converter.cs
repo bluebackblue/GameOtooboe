@@ -8,6 +8,16 @@ namespace GameData.QuestPlayer.Editor
 	*/
 	public static class Converter
 	{
+		/** MenuItem_Converter_Randomt
+		*/
+		[UnityEditor.MenuItem("Converter/Random")]
+		private static void MenuItem_Converter_Randomt()
+		{
+			for(int ii=0;ii<10;ii++){
+				UnityEngine.Debug.Log(UnityEngine.Random.value > 0.5f ? "1" : "2");
+			}
+		}
+
 		/** MenuItem_Converter_Quest
 		*/
 		[UnityEditor.MenuItem("Converter/Quest")]

@@ -52,7 +52,7 @@ MonoBehaviour:
   - command: 1
     value_int: 5
     value_float: 0
-    value_string: Quest_04
+    value_string: LEVEL 03
   - command: 2
     value_int: 3
     value_float: 0
@@ -75,7 +75,7 @@ MonoBehaviour:
     value_string: 
   - command: 7
     value_int: 0
-    value_float: 180
+    value_float: 210
     value_string: 
   - command: 8
     value_int: 0
@@ -91,10 +91,6 @@ MonoBehaviour:
     value_string: 
   - command: 6
     value_int: 2
-    value_float: 0
-    value_string: 
-  - command: 6
-    value_int: 1
     value_float: 0
     value_string: 
   - command: 6
