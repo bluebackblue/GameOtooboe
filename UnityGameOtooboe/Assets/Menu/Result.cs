@@ -144,10 +144,11 @@ namespace Menu
 		public void UnityFixedUpdate()
 		{
 			if(this.lockflag == false){
-				if(this.time <= 1.0f){
+				if(this.time <= 0.5f){
 					this.time += UnityEngine.Time.deltaTime;
 				}else{
 					if(this.engine.mouse_fixedupdate.left.down == true){
+						Execute.Engine.GetSingleton().audio_se.PlayOnce(1,1.0f);
 						this.eventcallback.Call((int)this.code);
 					}
 				}

@@ -148,6 +148,7 @@ namespace Menu
 				if(new UnityEngine.Vector2(this.engine.mouse_fixedupdate.cursor.pos.x - 0.5f,this.engine.mouse_fixedupdate.cursor.pos.y - 0.5f).magnitude <= 0.1f){
 					this.message_text.color = new UnityEngine.Color(1.0f,0.0f,0.0f,1.0f);
 					if(this.engine.mouse_fixedupdate.left.down == true){
+						Execute.Engine.GetSingleton().audio_se.PlayOnce(1,1.0f);
 						this.eventcallback.Call((int)Code.InGame);
 					}
 				}else{

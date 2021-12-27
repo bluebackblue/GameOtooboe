@@ -28,6 +28,10 @@ namespace Execute
 		*/
 		public float temp_sec;
 
+		/** temp_skip
+		*/
+		public bool temp_skip;
+
 		/** onmemory
 		*/
 		private Game.OnMemory onmemory;
@@ -255,8 +259,8 @@ namespace Execute
 						this.countdown_text.text = a_item.value_string;
 						this.countdown_text.enabled = true;
 					}else{
-						this.temp_sec = UnityEngine.Mathf.Max(0,this.temp_sec - UnityEngine.Time.fixedDeltaTime);
-
+						float t_speed = 1.5f;
+						this.temp_sec = UnityEngine.Mathf.Max(0,this.temp_sec - UnityEngine.Time.fixedDeltaTime * t_speed);
 					}
 					
 					#if(UNITY_EDITOR)
@@ -283,10 +287,23 @@ namespace Execute
 
 					if(a_first == true){
 						this.temp_sec = 0.0f;
+						this.temp_skip = false;
 						this.message_text.text = a_item.value_string;
 						this.message_text.enabled = true;
 					}else{
-						this.temp_sec += UnityEngine.Time.fixedDeltaTime;
+
+						if(Execute.Engine.GetSingleton().mouse_fixedupdate.left.down == true || Execute.Engine.GetSingleton().mouse_fixedupdate.right.down == true){
+							if(this.temp_skip == false){
+								this.temp_skip = true;
+								Execute.Engine.GetSingleton().audio_se.PlayOnce(1,1.0f);
+							}
+						}
+
+						if(this.temp_skip == false){
+							this.temp_sec += UnityEngine.Time.fixedDeltaTime;
+						}else{
+							this.temp_sec += UnityEngine.Time.fixedDeltaTime * 5.0f;
+						}
 					}
 					
 					#if(UNITY_EDITOR)
@@ -309,6 +326,12 @@ namespace Execute
 					}else if(this.temp_sec <= t_section * 4){
 						//1 2 3
 						t_x = UnitySetting.Config.SCREEN_W / 2;
+
+						if(this.temp_skip == false){
+							if(this.temp_sec < t_section * 3){
+								this.temp_sec = t_section * 3;
+							}
+						}
 					}else{
 						//4
 						float t_time = UnityEngine.Mathf.Clamp01((this.temp_sec - (t_section * 4)) / t_section);

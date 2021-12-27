@@ -53,10 +53,6 @@ MonoBehaviour:
     value_int: 5
     value_float: 0
     value_string: LEVEL 03
-  - command: 2
-    value_int: 3
-    value_float: 0
-    value_string: 
   - command: 3
     value_int: 0
     value_float: 0
