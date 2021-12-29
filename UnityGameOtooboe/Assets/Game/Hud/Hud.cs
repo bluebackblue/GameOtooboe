@@ -39,14 +39,14 @@ namespace Game.Hud
 			this.bar_y = UnitySetting.Config.SCREEN_H / 2;
 
 			//bar_spriteindex
-			this.bar_spriteindex = Execute.Engine.GetSingleton().gl.spritelist[1].CreateSprite(false,(int)UnitySetting.MaterialIndex.Additive,(int)UnitySetting.TextureIndex.None,new UnityEngine.Color(0.5f,0.6f,0.7f,1.0f),0,0,0,0,UnitySetting.Config.SCREEN_W,UnitySetting.Config.SCREEN_H);
+			this.bar_spriteindex = Execute.Engine.GetSingleton().gl.spritelist[1].CreateSprite(false,(int)UnitySetting.MaterialIndex.Additive,(int)UnitySetting.TextureIndex.None,new UnityEngine.Color(0.5f,0.6f,0.7f,1.0f),0,0,0,0,in Execute.Engine.GetSingleton().gl_screenparam);
 
 			this.bar_flag = false;
 
 			//life_spriteindex
 			this.life_spriteindex = new BlueBack.Gl.SpriteIndex[4];
 			for(int ii=0;ii<this.life_spriteindex.Length;ii++){
-				this.life_spriteindex[ii] = Execute.Engine.GetSingleton().gl.spritelist[1].CreateSprite(false,(int)UnitySetting.MaterialIndex.Frame,(int)UnitySetting.TextureIndex.None,new UnityEngine.Color(0.87f,0.68f,0.0f,1.0f),0,0,0,0,UnitySetting.Config.SCREEN_W,UnitySetting.Config.SCREEN_H);
+				this.life_spriteindex[ii] = Execute.Engine.GetSingleton().gl.spritelist[1].CreateSprite(false,(int)UnitySetting.MaterialIndex.Frame,(int)UnitySetting.TextureIndex.None,new UnityEngine.Color(0.87f,0.68f,0.0f,1.0f),0,0,0,0,in Execute.Engine.GetSingleton().gl_screenparam);
 			}
 
 			this.life_flag = false;
@@ -127,7 +127,7 @@ namespace Game.Hud
 				for(int ii=0;ii<this.life_spriteindex.Length;ii++){
 					int t_x = UnitySetting.Config.SCREEN_W - 50 - ii * 40;
 					int t_y = 20;
-					BlueBack.Gl.SpriteTool.SetXYWH(ref this.life_spriteindex[ii].spritelist.buffer[this.life_spriteindex[ii].index],t_x,t_y,30,45,UnitySetting.Config.SCREEN_W,UnitySetting.Config.SCREEN_H);
+					BlueBack.Gl.SpriteTool.SetXYWH(ref this.life_spriteindex[ii].spritelist.buffer[this.life_spriteindex[ii].index],t_x,t_y,30,45,in Execute.Engine.GetSingleton().gl_screenparam);
 				}
 			}
 			for(int ii=0;ii<this.life_spriteindex.Length;ii++){
@@ -153,7 +153,7 @@ namespace Game.Hud
 			this.bar_flag = a_flag;
 
 			if(a_flag == true){
-				BlueBack.Gl.SpriteTool.SetXYWH(ref this.bar_spriteindex.spritelist.buffer[this.bar_spriteindex.index],0,this.bar_y,UnitySetting.Config.SCREEN_W,4,UnitySetting.Config.SCREEN_W,UnitySetting.Config.SCREEN_H);
+				BlueBack.Gl.SpriteTool.SetXYWH(ref this.bar_spriteindex.spritelist.buffer[this.bar_spriteindex.index],0,this.bar_y,UnitySetting.Config.SCREEN_W,4,in Execute.Engine.GetSingleton().gl_screenparam);
 			}
 			this.bar_spriteindex.spritelist.buffer[this.bar_spriteindex.index].visible = a_flag;
 

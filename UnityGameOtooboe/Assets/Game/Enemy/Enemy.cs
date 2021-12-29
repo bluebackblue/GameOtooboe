@@ -87,56 +87,12 @@ namespace Game.Enemy
 
 			this.index = a_index;
 			this.position = a_position;
-
-			/*
-			switch(this.position){
-			case -1:
-				{
-					t_color = new UnityEngine.Color(0,0,0,0);
-					this.sprite_x = UnitySetting.Config.SCREEN_W / 2 - 100;
-				}break;
-			case 1:
-				{
-					if(t_onmemory.param.modeblack == 0){
-						//色判別可能、位置判別可能。
-						t_color = new UnityEngine.Color(1,0,0,1);
-						this.sprite_x = UnitySetting.Config.SCREEN_W / 2 - 100;
-					}else if(t_onmemory.param.modeblack == 1){
-						//色判別不可。
-						t_color = new UnityEngine.Color(0.8f,0.8f,0.8f,1);
-						this.sprite_x = UnitySetting.Config.SCREEN_W / 2 - 100;
-					}
-				}break;
-			case 2:
-				{
-					if(t_onmemory.param.modeblack == 0){
-						//色判別可能、位置判別可能。
-						t_color = new UnityEngine.Color(0,1,0,1);
-						this.sprite_x = UnitySetting.Config.SCREEN_W / 2 + 100;
-					}else if(t_onmemory.param.modeblack == 1){
-						//色判別不可。
-						t_color = new UnityEngine.Color(0.8f,0.8f,0.8f,1);
-						this.sprite_x = UnitySetting.Config.SCREEN_W / 2 + 100;
-					}
-				}break;
-			default:
-				{
-					#if(UNITY_EDITOR)
-					UnityEngine.Debug.Assert(false);
-					#endif
-
-					t_color = new UnityEngine.Color(0,1,0,1);
-				}break;
-			}
-			*/
 			UnityEngine.Color t_color = new UnityEngine.Color(0,0,0,0);
-
-
-			this.sprite = Execute.Engine.GetSingleton().gl.spritelist[0].CreateSprite(false,(int)UnitySetting.MaterialIndex.Frame,(int)UnitySetting.TextureIndex.None,in t_color,0,0,0,0,UnitySetting.Config.SCREEN_W,UnitySetting.Config.SCREEN_H);
+			this.sprite = Execute.Engine.GetSingleton().gl.spritelist[0].CreateSprite(false,(int)UnitySetting.MaterialIndex.Frame,(int)UnitySetting.TextureIndex.None,in t_color,0,0,0,0,in Execute.Engine.GetSingleton().gl_screenparam);
 			this.mode = Game.Enemy.Enemy.Mode.In;
 
 			#if(DEF_BLUEBACK_GL_DEBUGVIEW)
-			this.sprite.SetDebugName("sprite_enemy_" + a_index.ToString("D2"));
+			this.sprite.SetDebugViewName("sprite_enemy_" + a_index.ToString("D2"));
 			#endif
 
 			this.width = 64;
@@ -270,7 +226,7 @@ namespace Game.Enemy
 							this.sprite.spritelist.buffer[this.sprite.index].visible = true;
 						}
 
-						BlueBack.Gl.SpriteTool.SetXYWH(ref this.sprite.spritelist.buffer[this.sprite.index],t_x,t_y,t_w,t_h,UnitySetting.Config.SCREEN_W,UnitySetting.Config.SCREEN_H);
+						BlueBack.Gl.SpriteTool.SetXYWH(ref this.sprite.spritelist.buffer[this.sprite.index],t_x,t_y,t_w,t_h,in Execute.Engine.GetSingleton().gl_screenparam);
 
 						//ＳＥ再生。
 						if(this.seflag == true){
@@ -344,7 +300,7 @@ namespace Game.Enemy
 							this.sprite.spritelist.buffer[this.sprite.index].visible = true;
 						}
 
-						BlueBack.Gl.SpriteTool.SetXYWH(ref this.sprite.spritelist.buffer[this.sprite.index],t_x,t_y,t_w,t_h,UnitySetting.Config.SCREEN_W,UnitySetting.Config.SCREEN_H);
+						BlueBack.Gl.SpriteTool.SetXYWH(ref this.sprite.spritelist.buffer[this.sprite.index],t_x,t_y,t_w,t_h,in Execute.Engine.GetSingleton().gl_screenparam);
 
 						//範囲外チェック。
 						if(t_y >= UnitySetting.Config.SCREEN_H + t_space){

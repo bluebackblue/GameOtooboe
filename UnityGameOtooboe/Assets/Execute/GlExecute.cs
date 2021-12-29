@@ -12,14 +12,14 @@ namespace Execute
 		*/
 		public System.Collections.IEnumerator Boot()
 		{
+			Engine.GetSingleton().gl_screenparam = BlueBack.Gl.ScreenTool.CreateScreenParamWidthStretch(UnitySetting.Config.SCREEN_W,UnitySetting.Config.SCREEN_H,UnityEngine.Screen.width,UnityEngine.Screen.height);
+
 			BlueBack.Gl.InitParam t_initparam = BlueBack.Gl.InitParam.CreateDefault();
 			{
 				t_initparam.spritelist_max = 3;
 				t_initparam.texture_max = 64;
 				t_initparam.material_max = 8;
 				t_initparam.sprite_max = 256;
-				t_initparam.screen_w = UnitySetting.Config.SCREEN_W;
-				t_initparam.screen_h = UnitySetting.Config.SCREEN_H;
 			}
 			Engine.GetSingleton().gl = new BlueBack.Gl.Gl(in t_initparam);
 			BlueBack.Gl.Gl t_gl = Engine.GetSingleton().gl;

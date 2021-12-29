@@ -55,6 +55,7 @@ namespace Execute
 		/** gl
 		*/
 		public BlueBack.Gl.Gl gl;
+		public BlueBack.Gl.ScreenParam gl_screenparam;
 
 		/** mouse_fixedupdate
 		*/

@@ -61,7 +61,7 @@ namespace Game.Fade
 			//sprite
 			this.list = new Item[21 * 12];
 			for(int ii = 0;ii < this.list.Length;ii++){
-				this.list[ii].sprite = Execute.Engine.GetSingleton().gl.spritelist[2].CreateSprite(false,(int)UnitySetting.MaterialIndex.Transparent,(int)UnitySetting.TextureIndex.None,UnityEngine.Color.black,0,0,0,0,UnitySetting.Config.SCREEN_W,UnitySetting.Config.SCREEN_H);
+				this.list[ii].sprite = Execute.Engine.GetSingleton().gl.spritelist[2].CreateSprite(false,(int)UnitySetting.MaterialIndex.Transparent,(int)UnitySetting.TextureIndex.None,UnityEngine.Color.black,0,0,0,0,in Execute.Engine.GetSingleton().gl_screenparam);
 			}
 		}
 
@@ -129,7 +129,7 @@ namespace Game.Fade
 							int t_y  = (ii / 21) * 64;
 							int t_w = 64;
 							int t_h = 64;
-							BlueBack.Gl.SpriteTool.SetXYWH(ref this.list[ii].sprite.spritelist.buffer[this.list[ii].sprite.index],t_x,t_y,t_w,t_h,UnitySetting.Config.SCREEN_W,UnitySetting.Config.SCREEN_H);
+							BlueBack.Gl.SpriteTool.SetXYWH(ref this.list[ii].sprite.spritelist.buffer[this.list[ii].sprite.index],t_x,t_y,t_w,t_h,in Execute.Engine.GetSingleton().gl_screenparam);
 						}
 					}
 				}break;
